@@ -1,0 +1,12 @@
+.ipynb_checkpoints
+*.prof
+__pycache__
+dist/
+build/
+*.egg-info
+*.pyc
+venv/
+.idea/
+.tox/
+*.pdf
+*.html
