@@ -656,6 +656,30 @@ Propagation is one of the main benefits of exceptions that allows to find the ri
 
 ---
 
+![bg 60%](./img/exception-propagation-1.svg)
+
+---
+
+![bg 60%](./img/exception-propagation-2.svg)
+
+---
+
+![bg 60%](./img/exception-propagation-3.svg)
+
+---
+
+![bg 60%](./img/exception-propagation-4.svg)
+
+---
+
+![bg 60%](./img/exception-propagation-5.svg)
+
+---
+
+![bg 60%](./img/exception-propagation-6.svg)
+
+---
+
 Compared to a custom handling of errors, exceptions have the following benefits:
 - they propagate automatically: allowing to provide general workarounds for large parts of code
 - they are typed and all exception types are hierarchized
@@ -670,6 +694,40 @@ Compared to a custom handling of errors, exceptions have the following benefits:
 - `IOError`: I/O error (e.g. corrupted data, inexisting file...)
 - `KeyboardInterrupt`: received SIGINT signal (Ctrl +C)
 
+---
+### The try/except block
+
+The basic syntax to catch an exception:
+```python
+try:
+    protected_code()  # Raises IOError
+except IOError:
+    subtitution_code()
+```
+
+What happens at runtime:
+```python
+try:
+    protected_code()  # Raises IOError
+    skipped_code()
+    skipped_code2()
+except IOError:
+    substituted_code()
+    substituted_code2()
+resumed_code()
+resumed_code2()
+```
+
+---
+
+Other uses of the try/except block:
+
+```python
+try:
+    protected_code()
+raise IOError, FileNotFoundError:
+    pass
+```
 
 
 
@@ -738,9 +796,371 @@ Libraries are **buit-in** if they are pre-installed with any Python interpreter 
 
 ---
 
-## PART 2 day 2 mais refactor ?
+## DAY 2
+
+
+### Import statement
+Load resources from libraries.
+
+Import a unique name: 
+```python
+from math import sqrt
+value = sqrt(25)
+```
+
+Import an entire module:
+```python
+import math
+value = math.sqrt(25)
+```
+
+The resource is imported into the global scope.
+
+---
+
+### The `sys.path` variable
+
+When importing a package with the `import` statement, the interpreter seeks for it in `sys.path`. 
+
+This is a regular Python list and it can be modified at runtime (with `append`) to add paths to your libraries.
+
+![bg right:60% 95%](img/sys.path.png)
+
+---
+## The Python Package Index (PyPI)
+**PyPI** is a global server that allows to find, install and share Python packages.
+
+It is operated by the **Python Packaging Authority (PyPA)**: a working group from the **Python Software Foundation (PSF)**.
+
+The command-line tool **Package Installer for Python (pip)** can be used to install packages by their name, e.g. `bottle`. It can install from various sources (Link to code repos, ZIP file, local server...) and automatically seeks on PyPI if no source is given:
+
+```bash
+pip install git+https://github.com/bottlepy/bottle
+pip install https://github.com/bottlepy/bottle/archive/refs/heads/master.zip
+pip install path/to/my/python/package/folder/
+pip install path/to/my/python/package/zip/file.zip
+pip install numpy    # Will seek on PyPI
+pip install numpy==1.21.5   # Force a specific version
+```
+
+---
+
+```bash
+pip install -r requirements.txt
+```
+
+As a convention, the `requirements.txt` file provides of packages when they are not installable.
+
+```python
+# requirements.txt
+redis==3.2.0
+Flask
+celery==4.2.1
+pytest
+```
+
+In that case, this file is placed at the root of the package.
+
+However, installable packages are recommended. In that case, dependencies are handled by `setuptools`.
 
 
 
 ---
-# TODO G30 SNCF
+### PyPI Security warning 🚨
+[PyPI packages caught stealing credit card numbers & Discord tokens](https://www.bleepingcomputer.com/news/security/pypi-packages-caught-stealing-credit-card-numbers-discord-tokens/)
+
+![width:600px](img/pypi-noblesse-bleeping.png)
+
+---
+### Perform sanity checks before installing a package
+
+- Is the package still maintained **and** documented?
+```
+Last update: November, 2017
+```
+- Does the developer consider bugs and improvements?
+```
+# of solved Github issues
+```
+- Is the package developer reliable?
+```
+Moral entity or individual, which company, experience...
+```
+- If not opensource, is the development of this package likely to continue?
+```
+# of opensource users, # of clients, company financial health if not opensource, ...
+```
+
+---
+### PyPI Typosquatting warning 🚨
+
+```python
+pip install -r requirements.txt
+# 🚨 pip install requirements.txt
+
+pip install rabbitmq
+# 🚨 pip install rabitmq
+
+pip install matplotlib
+# 🚨 pip install matploltib
+```
+
+---
+## Virtual environments (venv)
+
+**Context:** All installed packages go into the `site-packages` directory of the interpreter.
+
+> The venv module provides support for creating lightweight “virtual environments” with their own site directories, optionally isolated from system site directories.
+
+> Each virtual environment has its own Python binary (which matches the version of the binary that was used to create this environment) and can have its own independent set of installed Python packages in its site directories.
+
+[🐍 Learn more](https://docs.python.org/3/library/venv.html)
+
+---
+![bg 70%](img/venv-0.svg)
+
+---
+![bg 70%](img/venv-1.svg)
+
+---
+![bg 70%](img/venv-2.svg)
+
+---
+![bg 70%](img/venv-3.svg)
+
+---
+![bg 90%](img/venv-4.svg)
+
+---
+For each new project you create/clone, create it its own dedicated virtual environment:
+```bash
+/usr/bin/python3.9 -m venv dev/Training2021/venv
+```
+
+Then, every time you work on this project, activate its environment first:
+```bash
+source Training2021/venv/bin/activate
+```
+
+Your terminal must prefix the prompt with the name of the env:
+```bash
+(venv) yoan@humancoders ~/dev/Training2021 $
+```
+And quit the venv every time you stop working on the project:
+```bash
+(venv) yoan@humancoders ~/dev/Training2021 $ deactivate
+yoan@humancoders ~/dev/Training2021 $ 
+```
+
+---
+In an activated venv, every call to the interpreter and every package installation will target the isolated virtual environment:
+
+```bash
+(venv) yoan@humancoders ~/dev/Training2021 $ python
+```
+will run the Python version targeted by the venv
+
+```bash
+(venv) yoan@humancoders ~/dev/Training2021 $ pip install numpy
+```
+will install the latest numpy version into the venv
+
+```bash
+(venv) yoan@humancoders ~/dev/Training2021 $ pip install numpy==1.21.0
+```
+will install the specific numpy version into the venv
+
+---
+In practice, your IDE can handle venv creation, activation and deactivation automatically for you when you create or open/close a project.
+
+![bg right:50% 85%](img/venv-pycharm.png)
+
+---
+
+## Object-Oriented Programming (O.O.P.)
+
+Here is a program to handle the sales of an apartment:
+
+```python
+apartment_available = True
+apartment_price = 90000
+
+def sell():
+   apartment_available = False
+
+def reduce_price(percentage=5):
+   apartment_price = apartment_price * (1-percentage/100)
+
+```
+_Note: because of the scope of variables, global variables would be required here_
+
+---
+
+In classic programming, these are **variables**...
+```python
+apartment_available = True
+apartment_price = 90000
+```
+... and these are **functions**:
+```python
+def sell():
+   apartment_available = False
+
+def reduce_price(percentage=5):
+   apartment_price = apartment_price * (1-percentage/100)
+
+```
+
+---
+
+However, functions usually manipulate on data stored in variables. So functions are linked to variables.
+
+In Object-Oriented Programming, variables and functions are grouped into a single entity named a **class**:
+
+```python
+class Apartment:
+    def sell():
+        apartment_available = False
+
+    def reduce_price(percentage=5):
+        apartment_price = apartment_price * (1-percentage/100)
+```
+_Note: this intermediary explanation is not yet a valid snippet_
+
+---
+
+Object-Oriented Programming introduced specific vocabulary:
+
+Types are called **classes**:
+
+```python
+class Apartment:   
+```
+
+Functions are called **methods**:
+```python
+    def sell():    
+```
+
+Variables are called **attributes**:
+```python
+        apartment_available = False
+```
+
+---
+Since a class is a type (here, `Apartment`), the program can declare several independant apartments:
+
+```python
+apartment_dupont = Apartment()
+apartment_muller = Apartment()
+
+apartment_dupont.reduce(15)
+apartment_muller.reduce(7)
+apartment_dupont.sell()
+apartment_muller.reduce(3)
+apartment_muller.sell()
+```
+
+---
+
+```python
+apartment_dupont = Apartment()
+```
+In this statement:
+* `Apartment` is a **class**
+* `apartment_dupont` is an **object** (an instance of a class)
+* `Apartment()` is the **contructor** (the method creating an object out of a class)
+
+---
+
+```python
+apartment_dupont.reduce(15)
+```
+
+This statement is a **method call** on object `apartment_dupont`.
+
+Method calls can create **side effects** to the object (modifications of its attributes).
+
+Like regular functions, methods can take parameters in input. Here, an integer, 15.
+
+---
+
+### The `self` object
+
+* `self` is the name designating the instanciated object
+* `self` is implicitly passed as the first argument for each method call
+* `self` can be read as "*this object*"
+
+In other languages like Java or C++, `self` is named `this`.
+
+### The constructor
+
+The **constructor** is the specific method that instanciates an object out of a class. It is always named `__init__`.
+
+```python
+class Test:
+    def __init__():
+        self.attribute = 42
+```
+
+---
+
+Here is now a valid Python syntax for our class.
+
+This is the class **declaration**:
+
+```python
+class Apartment:
+
+   def __init__(self):                 # Implicit first parameter is self
+	   self.available = True   # We are creating an attribute in self
+	   self.price = 90000
+
+	def sell(self):
+   	    self.available = False
+
+	def reduce_price(self, percentage=5):
+   	    self.price = self.price * (1-percentage/100)
+```
+
+This is the class **instanciation**:
+```python
+apart_haddock = Apartment()
+```
+
+---
+
+The constructor, like any other method, can accept input parameters:
+
+```python
+class Apartment:
+   def __init__(self, price):
+	   self.available = True	
+	   self.price = price
+
+apart_dupont = Apartment(12000)    # Now the price is compulsory
+apart_haddock = Apartment(90000)
+
+apart_haddock.available = False
+```
+
+---
+### Inheritance
+
+A furnished apartment is the same as an `Apartment`... bus with additional furniture.
+
+```python
+class FurnishedApartement(Apartment):   # The same as an Apartment...
+   def __init__(self, price):
+	   self.furnitures = ["bed", "sofa"]  # ...but with furniture	
+	   super(FurnishedApartement, self).__init__(price)
+
+
+
+furnished_apart = FurnishedApartment(90000)
+furnished_apart.available = False
+furnished_apart.reduce(5)
+furnished_apart.furnitures.append("table")
+```
+
+Note: Latest Python 3 authorizes to use `super()` instead of the long `super` syntax.
