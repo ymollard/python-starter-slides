@@ -818,13 +818,93 @@ The resource is imported into the global scope.
 
 ---
 
+## Difference between modules and packages
+
+A **module** is a Python file, e.g. `mymodule.py`. The module name is `mymodule`
+
+Either the module is made to be:
+- imported: it is a **package**: `import mymodule`
+- executed: it is a **script**: `python mymodule.py`
+
+A package can also be a folder containing modules and sub-packages.
+
+Modules can also be bindings, e.g. Python bindings to a C++ library.
+
+---
+### Shebangs of Python scripts
+
+On UNIX OSes (UNIX, Linux, MacOS), a `shebang` is a header of a Python script that tells the system shell which interpreter is to be called to execute this Python module.
+
+Usually, we invoke the `env` command to tell which is the interpreter for `python3` with such header:
+
+```python
+#!/usr/bin/env python3
+```
+
+Direct call to the interpreter is possible but NOT recommended, since it will force the interpreter bby ignoring any virtual environment you could be in:
+```python
+#!/usr/local/bin/python3
+```
+
+The Windows shell ignore shebangs.
+
+---
+### Structure of Python packages
+- Packages and sub-packages allow to bring a hierarchy to your code
+- The package's hierarchy is inherited from the files-and-folders hierarchy 
+- Modules hold resources that can be imported later on, e.g.:
+  - Constants
+  - Classes
+  - Functions...
+![bg right:40% 70%](img/package-init.png)
+
+---
+- All packages and sub-packages must contain an `__init__.py` file each
+- In general `__init__.py` is empty but may contain code to be executed at import time
+
+![bg right:30% 90%](img/package-with-init.png)
+
+Then the package or its sub-packages can be imported:
+```python
+import my_math.trigo
+my_math.trigo.sin.sinus(0)
+```
+Specific resources can also be imported:
+```python
+from my_math.matrix.complex.arithmetic import product
+```
+
+_Note: The double-underscore is called **dunder**_
+
+---
+
+### Relative imports (Imports internal to a package)
+Relative import from the same folder:
+```python
+from .my_math import my_sqrt
+value = my_sqrt(25)
+```
+
+Relative import from a parent folder:
+```python
+from ..my_math import my_sqrt
+value = sqrt(25)
+```
+
+- Do not put any slash such as ~~`import ../my_math`~~
+- Only current and parent folders can be retrieved with a relative import
+
+---
+
 ### The `sys.path` variable
 
 When importing a package with the `import` statement, the interpreter seeks for it in `sys.path`. 
 
 This is a regular Python list and it can be modified at runtime (with `append`) to add paths to your libraries.
 
-![bg right:60% 95%](img/sys.path.png)
+However installable packages and recommanded and do not need this trick.
+
+![bg right:45% 90%](img/sys.path.png)
 
 ---
 ## The Python Package Index (PyPI)
@@ -1153,8 +1233,7 @@ A furnished apartment is the same as an `Apartment`... bus with additional furni
 class FurnishedApartement(Apartment):   # The same as an Apartment...
    def __init__(self, price):
 	   self.furnitures = ["bed", "sofa"]  # ...but with furniture	
-	   super(FurnishedApartement, self).__init__(price)
-
+	   super().__init__(price)
 
 
 furnished_apart = FurnishedApartment(90000)
@@ -1163,4 +1242,248 @@ furnished_apart.reduce(5)
 furnished_apart.furnitures.append("table")
 ```
 
-Note: Latest Python 3 authorizes to use `super()` instead of the long `super` syntax.
+The `super()` function allows to call the same method in the parent class. 
+
+_Note: Former Pythons require a longer syntax: `super(CurrentClassName, self)`_
+
+---
+
+### Terms from object-oriented programming (O.O.P.) to remember:
+
+* A **class** is a type owning attributes and methods
+* An **object** is an instance of a class
+* Instanciating a class consists into building an object from this class
+* The **constructor** is the method initializing the object: `__init__()`
+* An **attribute** is a variable from a class (or from an object)
+* A **method** is a function from a class (or from an object)
+* A (child) class may **inherit** from another (parent), and may **override** its methods
+
+---
+
+### Magic methods
+
+
+* apart1 + apart2		→ `Apartment.__add__(self, other)`    		→ Addition
+* apart1 * apart2		→ `Apartment.__mul__(self, other)`    		→ Multiplication
+* apart1 == apart2 		→ `Apartment.__eq__(self, other)`			→ Equality test
+* str(apart)			→  `Apartment.__str__(self)`				→ Readable string
+* repr(apart)			→  `Apartment.__repr__(self)`				→ Unique string
+* `getattr(apart, "price")`	→  `Apartment.__getattr__(self, name)`		→ Get an attribute
+* `setattr(ap, "price", 10)`	→  `Apartment.__setattr__(self, name, val)`	→ Set an attribute
+
+_The double-underscore is called **dunder**. Magic methods are aka **dunder methods**_
+
+---
+
+```ipython
+In [1]: dir(int)
+
+Out[1]: 
+['__abs__', '__add__', '__and__', '__bool__', '__ceil__', '__class__', 
+'__delattr__', '__dir__', '__divmod__', '__doc__', '__eq__', '__float__', 
+ '__floor__', '__floordiv__',  '__format__', '__ge__', 
+ '__getattribute__', '__getnewargs__',  '__gt__', '__hash__', '__index__', 
+  '__init__', '__init_subclass__',   '__int__', '__invert__', '__le__', 
+  '__lshift__', '__lt__', '__mod__',   '__mul__', '__ne__', '__neg__', 
+  '__new__', '__or__', '__pos__',   '__pow__', '__radd__', '__rand__', 
+  '__rdivmod__', '__reduce__',   '__reduce_ex__', '__repr__', 
+  '__rfloordiv__', '__rlshift__',   '__rmod__', '__rmul__', '__ror__', 
+  '__round__', '__rpow__',   '__rrshift__', '__rshift__', 
+  '__rsub__', '__rtruediv__',   '__rxor__', '__setattr__', 
+  '__sizeof__', '__str__', '__sub__',   '__subclasshook__', '__truediv__', 
+   '__trunc__', '__xor__',    'as_integer_ratio', 'bit_length', 
+   'conjugate', 'denominator',    'from_bytes', 'imag', 'numerator', 
+   'real', 'to_bytes']
+```
+
+---
+# DAY 3
+#  POPULAR LIBRARIES
+
+---
+
+### Popular built-in libraries (coming with all Python distributions)
+
+* [`math`](https://docs.python.org/3/library/math.html), [`time`](https://docs.python.org/3/library/time.html), [`random`](https://docs.python.org/3/library/random.html)
+* [`logging`](https://docs.python.org/3/library/logging.html): handle log files and streams with different levels and filters
+* [`pathlib`](https://docs.python.org/3/library/pathlib.html): handle file paths, discriminate files and folders, check file existence...
+* [`sys`](https://docs.python.org/3/library/sys.html): communicate with the interpreter (args, stdin, script exit ..) 
+* [`os`](https://docs.python.org/3/library/os.html): communicate with the OS (file access, low level fd , os-specific ...)
+* [`json`](https://docs.python.org/3/library/json.html), [`csv`](https://docs.python.org/3/library/csv.html): (de)serialize data in format JSON/CSV
+* [`requests`](https://docs.python.org/3/library/requests.html): emit synchronous HTTP requests
+* [`re`](https://docs.python.org/3/library/re.html): regular expressions
+* [`socket`](https://docs.python.org/3/library/socket.html): low level network sockets
+* [`argparse`](https://docs.python.org/3/library/argparse.html): access, typing and management of script parameters
+* [`asyncio`](https://docs.python.org/3/library/asyncio.html): Asynchronous I/Os with coroutine-based concurrent code (_promises_)
+* ~~`six`, `future` : write retrocompatible code for Python 2~~
+
+---
+
+### Popular non-builtin libraries (to be installed with pip if needed)
+* [`numpy`](https://numpy.org/), [`matplotlib`](https://matplotlib.org/), [`scikit-learn`](https://scikit-learn.org/), [`pandas`](https://pandas.pydata.org/): numerical calculus & data 
+* [`sqlalchemy`](https://www.sqlalchemy.org/): connect to a databse, emit SQL requests
+* [`pytest`](https://pytest.org/), [`unittest`](https://docs.python.org/3/library/unittest.html), [`tox`](https://tox.readthedocs.io/): test frameworks & build automation
+* [`redis`](https://redis.io/): inter-processus messaging (NoSQL database)
+* [`pillow`](https://python-pillow.org/), [`opencv`](https://opencv.org/): open, convert, resize… images and pictures
+* [`beautifulsoup`](https://www.crummy.com/software/BeautifulSoup/): extract data from XML or HTML files
+* [`tornado`](https://www.tornadoweb.org), [`django`](https://www.djangoproject.com/), [`gunicorn`](https://gunicorn.org/), [`flask`](https://flask.palletsprojects.com/), [`bottle`](https://bottlepy.org/): HTTP/WSGI servers
+* [`pygame`](https://www.pygame.org): Swiss knife of videogames (SDL 2D, audio, joysticks…)
+* [`setuptools`, `wheel`, `build`, `twine`](https://packaging.python.org/guides/distributing-packages-using-setuptools/): package distribution
+* [`pyqt`](https://wiki.python.org/moin/PyQt), [`tkinter`](https://wiki.python.org/moin/TkInter): graphical interfaces for fat clients: windows, buttons...
+
+---
+
+All builit-in libraries are documented in 8 languages on:
+#  [📖 docs.python.org](https://docs.python.org/)
+This documentation is community-written.
+
+Non-builtin libraries (e.g. those that you install via pip) usually have their documentation on their own web server. 
+
+Also, [readthedocs.io](https://readthedocs.io/) is a common place for some of them.
+
+---
+## Regular expressions `re`
+
+Match patterns from a text: 
+* E-mail addresses: `foo@bar.fr`
+* IP addresses: `192.168.2.10`
+* Version numbers: `4.5.1`
+* Postcodes: `75005`
+* etc...
+
+
+![bg right:50% 90%](./img/re.png)
+
+---
+
+```python
+import re
+
+re.match(r"[0-9]{5}",
+         "75000 Paris")
+
+re.match(r"^[0-9]{5}$",
+         "75000")
+
+re.match(r"^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$",
+         "192.168.1.100")
+```
+
+---
+
+### Argument parsers `argparse`
+
+```bash
+./contacts.py add Mary --email m@test.fr 
+
+./contacts.py del Mary
+
+./contacts.py -h
+
+./divide.py 10 30 --euclidian --verbose=2
+```
+
+* Positional arguments
+* Optional arguments
+* Sub-parsers
+* Documentation and descriptions
+
+---
+
+## Charset and encoding
+
+All text assets (Python string or `.py` file, `.json` file, `.txt` file…) are encoded using a **charset**, a correspondance table between **Bytes ↔ Actual character**
+
+* e.g. in `utf-8`: `0xC3A9` ↔ `é`
+* e.g. in `latin-1`: `0xE9` ↔ `é`
+
+You **MUST** know the encoding of a text asset in order to read it.
+
+If you do not, it can be guessed but there is a chance to make mistakes.
+
+This is what happens if you do not specify explicit encodings and rely on default parameters of file reading libraries.
+
+If the guess is wrong you may result in various outpus, e.g. `hÃ©tÃ©rogÃ¨ne`
+
+---
+
+* `Unicode` is the world set of all code points (~ characters) e.g. `U+1F601`: 😁
+* The Python interpreter holds:
+  * decoded unicode strings in type `str`
+  * encoded strings in type `bytes`
+* `encode()` and `decode()` methods on these objects can convert them between `bytes` and `str`
+* All I/Os, data coming in and out of the interpreter, must be respectively decoded and encoded with the charset expected by the recipient
+* stdout and stderr in your terminal are outputs, they have a charset
+* stdin in your terminal is an input, it has a charset 
+* Your `.py` file itself is an input, it has a charset
+
+---
+
+### Rule of thumb for encoding and decoding
+
+* I **RECEIVE** data coming **IN** the interpreter (from stdin, the network, a file...):
+
+    * If it is a `str`: it has already been decoded by reading functions
+_(Prey that they used the right charset 🙏)_
+    * If it is a `bytes`: decode-it with the charset declared by the source e.g.
+`data.decode("utf-8")` if the source sends UTF-8 strings
+
+* My Python code must operate only on Unicode (Python type `str`)
+
+* I **SEND** data **OUT** of the interpreter (to stdout, to the network, to a file...):
+
+    * If it is a `bytes`: it has already been encoded by reading functions
+_(Prey that they used the right charset 🙏)_
+    * If it is a `str`: encode-it with the charset declared by the recipient e.g.
+`data.encode("utf-8")` if the recipient expects UTF-8 strings 
+
+
+---
+
+### What is Unicode?
+
+Unicode is NOT a charset, this is the global table of all world code points.
+
+UTF-8, UTF-16 and UTF-32 are charsets capable of representing all Unicode code points, unlink other charsets e.g. ASCII (128 code points), latin-1 (256 code points), ... 
+
+# TODO REPRENDRE ICI avec les schméas en SVG
+
+---
+
+# The final point
+
+As of January, 2022, Python 3.9 and 3.10 are the stable versions.
+
+Python 2 is no longer supported since January, 2020: forget it!
+
+Main differences Python 2 → Python 3:
+
+* `print "Hello"`							→ `print("Hello")`
+* `raise ValueError, "Incorrect`	→ `raise ValueError("Incorrect)`
+* `type(1/3) == int` 						→ `type(1/3) == float`
+* `str` (encoded)/`unicode` (decoded)	→ `str` (decoded)/`bytes` (encoded)
+* `# encoding: utf8` (ASCII by default)		→ (UTF-8 by default)
+* `zip([0,1], [8,9]) == list`				→ `zip([0,1], [8,9]) == zip_object` (generator)
+
+---
+
+## The [Python Enhancement Proposals (PEP)](https://www.python.org/dev/peps/) and the [PEP 8](https://www.python.org/dev/peps/pep-0008/)
+
+![](./img/pep8.png)
+
+---
+
+![bg 67%](./img/python-cheat-sheet-1.png)
+
+---
+
+![bg 67%](./img/python-cheat-sheet-2.png)
+
+---
+
+![bg 67%](./img/python-cheat-sheet-3.png)
+
+---
+
+![bg 59%](./img/python-cheat-sheet-4.png)
+
