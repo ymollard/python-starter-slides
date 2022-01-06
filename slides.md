@@ -1403,7 +1403,7 @@ If you do not, it can be guessed but there is a chance to make mistakes.
 
 This is what happens if you do not specify explicit encodings and rely on default parameters of file reading libraries.
 
-If the guess is wrong you may result in various outpus, e.g. `hÃ©tÃ©rogÃ¨ne`
+If the guess is wrong it may result in e.g. `hÃ©tÃ©rogÃ¨ne` instead of `hétérogène`.
 
 ---
 
@@ -1432,7 +1432,7 @@ _(Prey that they used the right charset 🙏)_
 
 * I **SEND** data **OUT** of the interpreter (to stdout, to the network, to a file...):
 
-    * If it is a `bytes`: it has already been encoded by reading functions
+    * If it is a `bytes`: it has already been encoded by writing functions
 _(Prey that they used the right charset 🙏)_
     * If it is a `str`: encode-it with the charset declared by the recipient e.g.
 `data.encode("utf-8")` if the recipient expects UTF-8 strings 
@@ -1442,11 +1442,24 @@ _(Prey that they used the right charset 🙏)_
 
 ### What is Unicode?
 
-Unicode is NOT a charset, this is the global table of all world code points.
+Unicode is NOT a charset, this is the global table of **all world code points**.
 
-UTF-8, UTF-16 and UTF-32 are charsets capable of representing all Unicode code points, unlink other charsets e.g. ASCII (128 code points), latin-1 (256 code points), ... 
+**Encodings** (*ASCII, latin-1, UTF-8...*) may be able to code Unicode in whole or in part.
 
-# TODO REPRENDRE ICI avec les schméas en SVG
+**ASCII** and **latin-1** can only code a subset of Unicode (resp 128 and 256 code points).
+
+**UTF-8**, **UTF-16** and **UTF-32** can code all Unicode code points.
+
+The difference between UTF-8, 16 and 32 is about how they code characters:
+* UTF-8 uses a variable number of bytes
+* UTF-16 uses a variable number of bytes
+* UTF-32 uses a fixed number of 4 bytes 
+
+In average, UTF-16 is more efficient for Asian texts compared to UTF-8. But UTF-8 is more widely recommanded as a global standard.
+
+---
+
+![bg 75%](./img/encoding-1.svg)
 
 ---
 
