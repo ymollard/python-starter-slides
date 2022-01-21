@@ -31,17 +31,19 @@ https://starter.python.training.aubrune.eu/
 
 [ Exercise 1. Practice Python's lists and dictionaries](#3)
 
-[ Mini-project 2. Build a full package – Money transfer simulator](#4)
+[ Mini-project 2: The hanged man](#4)
 
-[ Mini-project 3. The e-mail address book](#20)
+[ Mini-project 3. Build a full package – Money transfer simulator](#8)
 
-[ Mini-project 4A. Guess my number [Easy]](#27)
-[ Mini-project 4B. The website generating animal name ideas [Medium]](#28)
-[ Mini-project 4C. PDF files of multiplication tables [Medium]](#30)
-[ Mini-project 4D. Estimate the value of π [Medium]](#33)
-[ Mini-project 4E. The LOVE thematic quotation [Medium]](#35)
-[ Mini-project 4F. Plot ping durations [Medium-Hard]](#36)
-[ Mini-project 4G. A Graphical User Interface for traceroute [Hard]](#38)
+[ Mini-project 4. The e-mail address book](#24)
+
+[ Mini-project 5A. Guess my number [Easy]](#31)
+[ Mini-project 5B. The website generating animal name ideas [Medium]](#32)
+[ Mini-project 5C. PDF files of multiplication tables [Medium]](#34)
+[ Mini-project 5D. Estimate the value of π [Medium]](#37)
+[ Mini-project 5E. The LOVE thematic quotation [Medium]](#39)
+[ Mini-project 5F. Plot ping durations [Medium-Hard]](#40)
+[ Mini-project 5G. A Graphical User Interface for traceroute [Hard]](#42)
 
 
 
@@ -56,17 +58,73 @@ https://starter.python.training.aubrune.eu/
 3. Launch Jupyter Lab by typing `jupyter lab` in the same terminal
 
 4. Right click and `Save As` in your PyCharm project's folder the following notebooks:
-* [Lists.ipynb]() 👀 _Make sure that Windows does not add extension `.txt` on its own_
-* [Dicts.ipynb]() 
-* [Dataset.ipynb]() 
+* [Types.ipynb](https://github.com/ymollard/python-starter-slides/raw/main/exercises/2.%20Exercice.%20Lists.ipynb) 👀 _Make sure that Windows does not add extension `.txt` on its own_
+* [Lists.ipynb](https://github.com/ymollard/python-starter-slides/raw/main/exercises/1.%20Exercise.%20Types.ipynb)
+* [Dicts.ipynb](https://github.com/ymollard/python-starter-slides/raw/main/exercises/3.%20Exercise.%20Dictionaries.ipynb) 
+* [Dataset.ipynb](https://github.com/ymollard/python-starter-slides/raw/main/exercises/4.%20Mini-project%20Dataset.ipynb)
 
-5. Go back to JupyterLab, open and follow the downloaded notebook
-
-💡 Protip: `Shift + Enter` runs a cell. `Ctrl + M` and then `B` inserts a new cell Below
-
+5. Go back to JupyterLab, open and follow the downloaded notebook. 💡 Protip: `Shift + Enter` runs a cell. `Ctrl + M` and then `B` inserts a new cell Below
 
 ---
-# Mini-project 2. Build a full package – Money transfer simulator
+
+# Mini-project 2: The hanged man
+
+You probably know the hanged man game:
+
+1. The player is shown a secret word in which letters are hidden by underscores
+2. Each turn, the player proposes a letter to unveil
+3. If the chosen letter is part of the word, all their occurences are revealed
+
+The goal is to reveal the secret word in less turns that there are letters in it. 
+
+```
+___IC__S_I_U_IO___LL_M___
+   ________
+   |       |
+  \o/      |
+   |       |
+  / \      |
+_______________________
+```
+
+---
+
+1. Write a function `input_letter()` that asks the user to type a letter and returns it. This functions retries in case the user types anything that is not valid (a number, punctuation, several letters, ...).
+
+**Note** : The function `input("Prompt:")` allows to read a string from the standard input
+
+2. Test your function in the Pycharm Python console
+
+3. Write a function `replace(letter, original_word, hidden_word)` that browses all characters of a partially hidden word (hidden by '_' characters) and reveals the requested letter at the right position if it is present in the original word.
+
+**Be careful**: The `str` type is immutable, it means that you cannot replace a character in the middle of a string, you have to re-construct it char-by-char.
+
+4. Test your function in the Pycharm Python console
+
+---
+
+5. Define and initialize the following variables to coherent initial values:
+  * `words`: a list of possible words to be guessed
+  * `secret_word`: a secret wrod randomly picked among the previous list (use for instance `random.choice`)
+  * `displayed_word`: the partially hidden word, i.e. the word of same length as the secret word in which every letter is remplaced by an underscore
+  * `max_attempts`: the number of remaining attempts
+
+---
+
+6. Add a **game loop** that:
+  * Displays the partially hidden word as well as the number of remaining attempts
+  * Prompts the player to enter a valid letter with  `input_letter()`
+  * Remplaces potential matches of this letter from `secret_word` in word `displayed_word`
+  * Checks the game state: exite the program with an appropriate message if the player wins or looses
+
+You game must now be playable!
+
+7. **Optional questions**:
+    * Store the 3 best scores in a JSON file, shown were the game starts.
+    * Install and use [`rich`](https://pypi.org/project/rich/) with [`click`](https://click.palletsprojects.com/) to make a beautiful interactive UI
+    * Draw a hanged man at each turn _(see the console drawing previously shown)_ 
+---
+# Mini-project 3. Build a full package – Money transfer simulator
 
 In this exercise we are going to create a simplified Information System that is able to handle and simulate bank transactions.
 
@@ -238,7 +296,7 @@ Re-organise your project structure as proposed in the figure. In Pycharm *File >
 
 ---
 
-# Mini-project 3. The e-mail address book
+# Mini-project 4. The e-mail address book
 
 We are going to write a Python script to handle e-mail addresses.
 
@@ -320,7 +378,7 @@ Here are, for instance, a few commands that your contact manager must accept:
 
 ---
 
-# Mini-project 4A. Guess my number [Easy]
+# Mini-project 5A. Guess my number [Easy]
 
 Game rules: the computer randomly picks a number between 1 and 100000000 without revealing it to the player.
 The player guesses a number and gives it to the computer that replies if the actual number is lesser or higher than the guess, and so on until the player guesses the right number. 
@@ -333,7 +391,7 @@ Once your game is playable, you may add the following features:
 
 ---
 
-# Mini-project 4B. The website generating animal name ideas [Medium]
+# Mini-project 5B. The website generating animal name ideas [Medium]
 
 `flask` is a Web micro-server ideal for basic websites not requiring any database, cache, serialisation, ...
 
@@ -353,7 +411,7 @@ Proceed as follow:
 
 ---
 
-# Mini-project 4C. PDF files of multiplication tables [Medium]
+# Mini-project 5C. PDF files of multiplication tables [Medium]
 
 Your child need cheat sheets to review multiplication tables. Create a script that generates pretty A4 pages to be printed, for each multiplicator, e.g.:
 
@@ -377,7 +435,7 @@ Proceed this way:
 
 ---
 
-# Mini-project 4D. Estimate the value of π [Medium]
+# Mini-project 5D. Estimate the value of π [Medium]
 
 
 Compute a maximum number of decimals of π has become a challenge to benchmark CPUs. In particular, the **Monte-Carlo method** estimates the value of pi this way:
@@ -402,7 +460,7 @@ Note: use `pyplot.axis(‘equal’)` to get orthogonal axes
 
 ---
 
-# Mini-project 4E. The LOVE thematic quotation [Medium]
+# Mini-project 5E. The LOVE thematic quotation [Medium]
 
 This is a program that displays a quotation about love every time you run it.
 1. Use the `requests` package to retrieve the web page http://www.quotationspage.com/random.php
@@ -411,7 +469,7 @@ This is a program that displays a quotation about love every time you run it.
 
 ---
 
-# Mini-project 4F. Plot ping durations [Medium-Hard]
+# Mini-project 5F. Plot ping durations [Medium-Hard]
 `ping` is a network tool sending ICMP requests to hosts. An ICMP request is sent every second and displays its round-trip duration in milliseconds.
 The project aims at developing a Python tool that plots durations of ping requests.
 
@@ -428,7 +486,7 @@ The project aims at developing a Python tool that plots durations of ping reques
 
 ---
 
-# Mini-project 4G. A Graphical User Interface for traceroute [Hard]
+# Mini-project 5G. A Graphical User Interface for traceroute [Hard]
 
 `traceroute` is a command to display all routers in which an IP packet goes through before reaching its final server (this is called "a route").
 
