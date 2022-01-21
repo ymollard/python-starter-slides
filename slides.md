@@ -46,6 +46,21 @@ https://starter.python.training.aubrune.eu/
 
 #  List of mini-projects
 
+[ Exercise 1. Practice Python's lists and dictionaries](/exercises.html#3)
+
+[ Mini-project 2: The hanged man](/exercises.html#4)
+
+[ Mini-project 3. Build a full package – Money transfer simulator](/exercises.html#8)
+
+[ Mini-project 4. The e-mail address book](/exercises.html#24)
+
+[ Mini-project 5A. Guess my number [Easy]](/exercises.html#31)
+[ Mini-project 5B. The website generating animal name ideas [Medium]](/exercises.html#32)
+[ Mini-project 5C. PDF files of multiplication tables [Medium]](/exercises.html#34)
+[ Mini-project 5D. Estimate the value of π [Medium]](/exercises.html#37)
+[ Mini-project 5E. The LOVE thematic quotation [Medium]](/exercises.html#39)
+[ Mini-project 5F. Plot ping durations [Medium-Hard]](/exercises.html#40)
+[ Mini-project 5G. A Graphical User Interface for traceroute [Hard]](/exercises.html#42)
 
 
 ---
@@ -623,8 +638,6 @@ sentence(apples=2, oranges=5)
 - `round()`: Round a float to a specific number of digits
 - `zip()`: Couple elements from several lists 2-by-2 (like a coat zipper)
 - `int()`, `float()`, `list()`, `dict()`...: Convert the parameter (cast)
-
-- TODO d'autres
 
 ---
 ### Introspection
@@ -1304,14 +1317,13 @@ Out[1]:
 
 ### Popular built-in libraries (coming with all Python distributions)
 
-* [`math`](https://docs.python.org/3/library/math.html), [`time`](https://docs.python.org/3/library/time.html), [`random`](https://docs.python.org/3/library/random.html)
+* [`math`](https://docs.python.org/3/library/math.html), [`time`](https://docs.python.org/3/library/time.html), [`random`](https://docs.python.org/3/library/random.html), [`re`](https://docs.python.org/3/library/re.html): tools for *math*, *time*, *random generation* & *regexes*
 * [`logging`](https://docs.python.org/3/library/logging.html): handle log files and streams with different levels and filters
 * [`pathlib`](https://docs.python.org/3/library/pathlib.html): handle file paths, discriminate files and folders, check file existence...
 * [`sys`](https://docs.python.org/3/library/sys.html): communicate with the interpreter (args, stdin, script exit ..) 
 * [`os`](https://docs.python.org/3/library/os.html): communicate with the OS (file access, low level fd , os-specific ...)
 * [`json`](https://docs.python.org/3/library/json.html), [`csv`](https://docs.python.org/3/library/csv.html): (de)serialize data in format JSON/CSV
 * [`requests`](https://docs.python.org/3/library/requests.html): emit synchronous HTTP requests
-* [`re`](https://docs.python.org/3/library/re.html): regular expressions
 * [`socket`](https://docs.python.org/3/library/socket.html): low level network sockets
 * [`argparse`](https://docs.python.org/3/library/argparse.html): access, typing and management of script parameters
 * [`asyncio`](https://docs.python.org/3/library/asyncio.html): Asynchronous I/Os with coroutine-based concurrent code (_promises_)
@@ -1321,8 +1333,8 @@ Out[1]:
 
 ### Popular non-builtin libraries (to be installed with pip if needed)
 * [`numpy`](https://numpy.org/), [`matplotlib`](https://matplotlib.org/), [`scikit-learn`](https://scikit-learn.org/), [`pandas`](https://pandas.pydata.org/): numerical calculus & data 
+* [`click`](https://click.palletsprojects.com/): beautiful command line interfaces
 * [`sqlalchemy`](https://www.sqlalchemy.org/): connect to a databse, emit SQL requests
-* [`pytest`](https://pytest.org/), [`unittest`](https://docs.python.org/3/library/unittest.html), [`tox`](https://tox.readthedocs.io/): test frameworks & build automation
 * [`redis`](https://redis.io/): inter-processus messaging (NoSQL database)
 * [`pillow`](https://python-pillow.org/), [`opencv`](https://opencv.org/): open, convert, resize… images and pictures
 * [`beautifulsoup`](https://www.crummy.com/software/BeautifulSoup/): extract data from XML or HTML files
@@ -1330,6 +1342,18 @@ Out[1]:
 * [`pygame`](https://www.pygame.org): Swiss knife of videogames (SDL 2D, audio, joysticks…)
 * [`setuptools`, `wheel`, `build`, `twine`](https://packaging.python.org/guides/distributing-packages-using-setuptools/): package distribution
 * [`pyqt`](https://wiki.python.org/moin/PyQt), [`tkinter`](https://wiki.python.org/moin/TkInter): graphical interfaces for fat clients: windows, buttons...
+
+---
+
+### Other non-builtin libraries for code quality
+* [`sphinx`](https://www.sphinx-doc.org): build beautiful documentation out of code documentation
+* [`pytest`](https://pytest.org/), [`unittest`](https://docs.python.org/3/library/unittest.html): test frameworks
+* [`tox`](https://tox.readthedocs.io/): test automation (e.g. _Continuous Integration_)
+* [`mypy`](http://mypy-lang.org/): static type checker for annotated code (see [PEP 484 Type Hints](https://www.python.org/dev/peps/pep-0484/))
+* [`pytype`](https://google.github.io/pytype/): type checker for unannotated code
+* [`pylint`](https://www.pylint.org/), [`pyflakes`](https://libraries.io/pypi/pyflakes): Syntactic and semantic checkers (linters)
+* [`pep8`](https://pep8.org/): Style checker
+
 
 ---
 
