@@ -1160,9 +1160,9 @@ apartment_muller.sell()
 apartment_dupont = Apartment()
 ```
 In this statement:
-* `Apartment` is a **class**
-* `apartment_dupont` is an **object** (an instance of a class)
-* `Apartment()` is the **contructor** (the method creating an object out of a class)
+- `Apartment` is a **class**
+- `apartment_dupont` is an **object** (an instance of a class)
+- `Apartment()` is the **contructor** (the method creating an object out of a class)
 
 ---
 
@@ -1180,9 +1180,9 @@ Like regular functions, methods can take parameters in input. Here, an integer, 
 
 ### The `self` object
 
-* `self` is the name designating the instanciated object
-* `self` is implicitly passed as the first argument for each method call
-* `self` can be read as "*this object*"
+- `self` is the name designating the instanciated object
+- `self` is implicitly passed as the first argument for each method call
+- `self` can be read as "*this object*"
 
 In other languages like Java or C++, `self` is named `this`.
 
@@ -1263,26 +1263,26 @@ _Note: Former Pythons require a longer syntax: `super(CurrentClassName, self)`_
 
 ### Terms from object-oriented programming (O.O.P.) to remember:
 
-* A **class** is a type owning attributes and methods
-* An **object** is an instance of a class
-* Instanciating a class consists into building an object from this class
-* The **constructor** is the method initializing the object: `__init__()`
-* An **attribute** is a variable from a class (or from an object)
-* A **method** is a function from a class (or from an object)
-* A (child) class may **inherit** from another (parent), and may **override** its methods
+- A **class** is a type owning attributes and methods
+- An **object** is an instance of a class
+- Instanciating a class consists into building an object from this class
+- The **constructor** is the method initializing the object: `__init__()`
+- An **attribute** is a variable from a class (or from an object)
+- A **method** is a function from a class (or from an object)
+- A (child) class may **inherit** from another (parent), and may **override** its methods
 
 ---
 
 ### Magic methods
 
 
-* apart1 + apart2		→ `Apartment.__add__(self, other)`    		→ Addition
-* apart1 * apart2		→ `Apartment.__mul__(self, other)`    		→ Multiplication
-* apart1 == apart2 		→ `Apartment.__eq__(self, other)`			→ Equality test
-* str(apart)			→  `Apartment.__str__(self)`				→ Readable string
-* repr(apart)			→  `Apartment.__repr__(self)`				→ Unique string
-* `getattr(apart, "price")`	→  `Apartment.__getattr__(self, name)`		→ Get an attribute
-* `setattr(ap, "price", 10)`	→  `Apartment.__setattr__(self, name, val)`	→ Set an attribute
+- apart1 + apart2		→ `Apartment.__add__(self, other)`    		→ Addition
+- apart1 * apart2		→ `Apartment.__mul__(self, other)`    		→ Multiplication
+- apart1 == apart2 		→ `Apartment.__eq__(self, other)`			→ Equality test
+- str(apart)			→  `Apartment.__str__(self)`				→ Readable string
+- repr(apart)			→  `Apartment.__repr__(self)`				→ Unique string
+- `getattr(apart, "price")`	→  `Apartment.__getattr__(self, name)`		→ Get an attribute
+- `setattr(ap, "price", 10)`	→  `Apartment.__setattr__(self, name, val)`	→ Set an attribute
 
 _The double-underscore is called **dunder**. Magic methods are aka **dunder methods**_
 
@@ -1317,42 +1317,42 @@ Out[1]:
 
 ### Popular built-in libraries (coming with all Python distributions)
 
-* [`math`](https://docs.python.org/3/library/math.html), [`time`](https://docs.python.org/3/library/time.html), [`random`](https://docs.python.org/3/library/random.html), [`re`](https://docs.python.org/3/library/re.html): tools for *math*, *time*, *random generation* & *regexes*
-* [`logging`](https://docs.python.org/3/library/logging.html): handle log files and streams with different levels and filters
-* [`pathlib`](https://docs.python.org/3/library/pathlib.html): handle file paths, discriminate files and folders, check file existence...
-* [`sys`](https://docs.python.org/3/library/sys.html): communicate with the interpreter (args, stdin, script exit ..) 
-* [`os`](https://docs.python.org/3/library/os.html): communicate with the OS (file access, low level fd , os-specific ...)
-* [`json`](https://docs.python.org/3/library/json.html), [`csv`](https://docs.python.org/3/library/csv.html): (de)serialize data in format JSON/CSV
-* [`requests`](https://docs.python.org/3/library/requests.html): emit synchronous HTTP requests
-* [`socket`](https://docs.python.org/3/library/socket.html): low level network sockets
-* [`argparse`](https://docs.python.org/3/library/argparse.html): access, typing and management of script parameters
-* [`asyncio`](https://docs.python.org/3/library/asyncio.html): Asynchronous I/Os with coroutine-based concurrent code (_promises_)
-* ~~`six`, `future` : write retrocompatible code for Python 2~~
+- [`math`](https://docs.python.org/3/library/math.html), [`time`](https://docs.python.org/3/library/time.html), [`random`](https://docs.python.org/3/library/random.html), [`re`](https://docs.python.org/3/library/re.html): tools for *math*, *time*, *random generation* & *regexes*
+- [`logging`](https://docs.python.org/3/library/logging.html): handle log files and streams with different levels and filters
+- [`pathlib`](https://docs.python.org/3/library/pathlib.html): handle file paths, discriminate files and folders, check file existence...
+- [`sys`](https://docs.python.org/3/library/sys.html): communicate with the interpreter (args, stdin, script exit ..) 
+- [`os`](https://docs.python.org/3/library/os.html): communicate with the OS (file access, low level fd , os-specific ...)
+- [`json`](https://docs.python.org/3/library/json.html), [`csv`](https://docs.python.org/3/library/csv.html): (de)serialize data in format JSON/CSV
+- [`requests`](https://docs.python.org/3/library/requests.html): emit synchronous HTTP requests
+- [`socket`](https://docs.python.org/3/library/socket.html): low level network sockets
+- [`argparse`](https://docs.python.org/3/library/argparse.html): access, typing and management of script parameters
+- [`asyncio`](https://docs.python.org/3/library/asyncio.html): Asynchronous I/Os with coroutine-based concurrent code (_promises_)
+- ~~`six`, `future` : write retrocompatible code for Python 2~~
 
 ---
 
 ### Popular non-builtin libraries (to be installed with pip if needed)
-* [`numpy`](https://numpy.org/), [`matplotlib`](https://matplotlib.org/), [`scikit-learn`](https://scikit-learn.org/), [`pandas`](https://pandas.pydata.org/): numerical calculus & data 
-* [`click`](https://click.palletsprojects.com/): beautiful command line interfaces
-* [`sqlalchemy`](https://www.sqlalchemy.org/): connect to a databse, emit SQL requests
-* [`redis`](https://redis.io/): inter-processus messaging (NoSQL database)
-* [`pillow`](https://python-pillow.org/), [`opencv`](https://opencv.org/): open, convert, resize… images and pictures
-* [`beautifulsoup`](https://www.crummy.com/software/BeautifulSoup/): extract data from XML or HTML files
-* [`tornado`](https://www.tornadoweb.org), [`django`](https://www.djangoproject.com/), [`gunicorn`](https://gunicorn.org/), [`flask`](https://flask.palletsprojects.com/), [`bottle`](https://bottlepy.org/): HTTP/WSGI servers
-* [`pygame`](https://www.pygame.org): Swiss knife of videogames (SDL 2D, audio, joysticks…)
-* [`setuptools`, `wheel`, `build`, `twine`](https://packaging.python.org/guides/distributing-packages-using-setuptools/): package distribution
-* [`pyqt`](https://wiki.python.org/moin/PyQt), [`tkinter`](https://wiki.python.org/moin/TkInter): graphical interfaces for fat clients: windows, buttons...
+- [`numpy`](https://numpy.org/), [`matplotlib`](https://matplotlib.org/), [`scikit-learn`](https://scikit-learn.org/), [`pandas`](https://pandas.pydata.org/): numerical calculus & data 
+- [`click`](https://click.palletsprojects.com/): beautiful command line interfaces
+- [`sqlalchemy`](https://www.sqlalchemy.org/): connect to a databse, emit SQL requests
+- [`redis`](https://redis.io/): inter-processus messaging (NoSQL database)
+- [`pillow`](https://python-pillow.org/), [`opencv`](https://opencv.org/): open, convert, resize… images and pictures
+- [`beautifulsoup`](https://www.crummy.com/software/BeautifulSoup/): extract data from XML or HTML files
+- [`tornado`](https://www.tornadoweb.org), [`django`](https://www.djangoproject.com/), [`gunicorn`](https://gunicorn.org/), [`flask`](https://flask.palletsprojects.com/), [`bottle`](https://bottlepy.org/): HTTP/WSGI servers
+- [`pygame`](https://www.pygame.org): Swiss knife of videogames (SDL 2D, audio, joysticks…)
+- [`setuptools`, `wheel`, `build`, `twine`](https://packaging.python.org/guides/distributing-packages-using-setuptools/): package distribution
+- [`pyqt`](https://wiki.python.org/moin/PyQt), [`tkinter`](https://wiki.python.org/moin/TkInter): graphical interfaces for fat clients: windows, buttons...
 
 ---
 
 ### Other non-builtin libraries for code quality
-* [`sphinx`](https://www.sphinx-doc.org): build beautiful documentation out of code documentation
-* [`pytest`](https://pytest.org/), [`unittest`](https://docs.python.org/3/library/unittest.html): test frameworks
-* [`tox`](https://tox.readthedocs.io/): test automation (e.g. _Continuous Integration_)
-* [`mypy`](http://mypy-lang.org/): static type checker for annotated code (see [PEP 484 Type Hints](https://www.python.org/dev/peps/pep-0484/))
-* [`pytype`](https://google.github.io/pytype/): type checker for unannotated code
-* [`pylint`](https://www.pylint.org/), [`pyflakes`](https://libraries.io/pypi/pyflakes): Syntactic and semantic checkers (linters)
-* [`pep8`](https://pep8.org/): Style checker
+- [`sphinx`](https://www.sphinx-doc.org): build beautiful documentation out of code documentation
+- [`pytest`](https://pytest.org/), [`unittest`](https://docs.python.org/3/library/unittest.html): test frameworks
+- [`tox`](https://tox.readthedocs.io/): test automation (e.g. _Continuous Integration_)
+- [`mypy`](http://mypy-lang.org/): static type checker for annotated code (see [PEP 484 Type Hints](https://www.python.org/dev/peps/pep-0484/))
+- [`pytype`](https://google.github.io/pytype/): type checker for unannotated code
+- [`pylint`](https://www.pylint.org/), [`pyflakes`](https://libraries.io/pypi/pyflakes): Syntactic and semantic checkers (linters)
+- [`pep8`](https://pep8.org/): Style checker
 
 
 ---
@@ -1369,11 +1369,11 @@ Also, [readthedocs.io](https://readthedocs.io/) is a common place for some of th
 ## Regular expressions `re`
 
 Match patterns from a text: 
-* E-mail addresses: `foo@bar.fr`
-* IP addresses: `192.168.2.10`
-* Version numbers: `4.5.1`
-* Postcodes: `75005`
-* etc...
+- E-mail addresses: `foo@bar.fr`
+- IP addresses: `192.168.2.10`
+- Version numbers: `4.5.1`
+- Postcodes: `75005`
+- etc...
 
 
 ![bg right:50% 90%](./img/re.png)
@@ -1407,10 +1407,10 @@ re.match(r"^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$",
 ./divide.py 10 30 --euclidian --verbose=2
 ```
 
-* Positional arguments
-* Optional arguments
-* Sub-parsers
-* Documentation and descriptions
+- Positional arguments
+- Optional arguments
+- Sub-parsers
+- Documentation and descriptions
 
 ---
 
@@ -1418,8 +1418,8 @@ re.match(r"^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$",
 
 All text assets (Python string or `.py` file, `.json` file, `.txt` file…) are encoded using a **charset**, a correspondance table between **Bytes ↔ Actual character**
 
-* e.g. in `utf-8`: `0xC3A9` ↔ `é`
-* e.g. in `latin-1`: `0xE9` ↔ `é`
+- e.g. in `utf-8`: `0xC3A9` ↔ `é`
+- e.g. in `latin-1`: `0xE9` ↔ `é`
 
 You **MUST** know the encoding of a text asset in order to read it.
 
@@ -1431,30 +1431,30 @@ If the guess is wrong it may result in e.g. `hÃ©tÃ©rogÃ¨ne` instead of `h�
 
 ---
 
-* `Unicode` is the world set of all code points (~ characters) e.g. `U+1F601`: 😁
-* The Python interpreter holds:
+- `Unicode` is the world set of all code points (~ characters) e.g. `U+1F601`: 😁
+- The Python interpreter holds:
   * decoded unicode strings in type `str`
   * encoded strings in type `bytes`
-* `encode()` and `decode()` methods on these objects can convert them between `bytes` and `str`
-* All I/Os, data coming in and out of the interpreter, must be respectively decoded and encoded with the charset expected by the recipient
-* stdout and stderr in your terminal are outputs, they have a charset
-* stdin in your terminal is an input, it has a charset 
-* Your `.py` file itself is an input, it has a charset
+- `encode()` and `decode()` methods on these objects can convert them between `bytes` and `str`
+- All I/Os, data coming in and out of the interpreter, must be respectively decoded and encoded with the charset expected by the recipient
+- stdout and stderr in your terminal are outputs, they have a charset
+- stdin in your terminal is an input, it has a charset 
+- Your `.py` file itself is an input, it has a charset
 
 ---
 
 ### Rule of thumb for encoding and decoding
 
-* I **RECEIVE** data coming **IN** the interpreter (from stdin, the network, a file...):
+- I **RECEIVE** data coming **IN** the interpreter (from stdin, the network, a file...):
 
     * If it is a `str`: it has already been decoded by reading functions
 _(Prey that they used the right charset 🙏)_
     * If it is a `bytes`: decode-it with the charset declared by the source e.g.
 `data.decode("utf-8")` if the source sends UTF-8 strings
 
-* My Python code must operate only on Unicode (Python type `str`)
+- My Python code must operate only on Unicode (Python type `str`)
 
-* I **SEND** data **OUT** of the interpreter (to stdout, to the network, to a file...):
+- I **SEND** data **OUT** of the interpreter (to stdout, to the network, to a file...):
 
     * If it is a `bytes`: it has already been encoded by writing functions
 _(Prey that they used the right charset 🙏)_
@@ -1475,9 +1475,9 @@ Unicode is NOT a charset, this is the global table of **all world code points**.
 **UTF-8**, **UTF-16** and **UTF-32** can code all Unicode code points.
 
 The difference between UTF-8, 16 and 32 is about how they code characters:
-* UTF-8 uses a variable number of bytes
-* UTF-16 uses a variable number of bytes
-* UTF-32 uses a fixed number of 4 bytes 
+- UTF-8 uses a variable number of bytes
+- UTF-16 uses a variable number of bytes
+- UTF-32 uses a fixed number of 4 bytes 
 
 In average, UTF-16 is more efficient for Asian texts compared to UTF-8. But UTF-8 is more widely recommanded as a global standard.
 
@@ -1495,12 +1495,12 @@ Python 2 is no longer supported since January, 2020: forget it!
 
 Main differences Python 2 → Python 3:
 
-* `print "Hello"`							→ `print("Hello")`
-* `raise ValueError, "Incorrect`	→ `raise ValueError("Incorrect)`
-* `type(1/3) == int` 						→ `type(1/3) == float`
-* `str` (encoded)/`unicode` (decoded)	→ `str` (decoded)/`bytes` (encoded)
-* `# encoding: utf8` (ASCII by default)		→ (UTF-8 by default)
-* `zip([0,1], [8,9]) == list`				→ `zip([0,1], [8,9]) == zip_object` (generator)
+- `print "Hello"`							→ `print("Hello")`
+- `raise ValueError, "Incorrect`	→ `raise ValueError("Incorrect)`
+- `type(1/3) == int` 						→ `type(1/3) == float`
+- `str` (encoded)/`unicode` (decoded)	→ `str` (decoded)/`bytes` (encoded)
+- `# encoding: utf8` (ASCII by default)		→ (UTF-8 by default)
+- `zip([0,1], [8,9]) == list`				→ `zip([0,1], [8,9]) == zip_object` (generator)
 
 ---
 

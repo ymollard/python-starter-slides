@@ -58,10 +58,10 @@ https://starter.python.training.aubrune.eu/
 3. Launch Jupyter Lab by typing `jupyter lab` in the same terminal
 
 4. Right click and `Save As` in your PyCharm project's folder the following notebooks:
-* [Types.ipynb](https://github.com/ymollard/python-starter-slides/raw/main/exercises/2.%20Lists.ipynb) 👀 _Make sure that Windows does not add extension `.txt` on its own_
-* [Lists.ipynb](https://github.com/ymollard/python-starter-slides/raw/main/exercises/1.%20Types.ipynb)
-* [Dicts.ipynb](https://github.com/ymollard/python-starter-slides/raw/main/exercises/3.%20Dictionaries.ipynb) 
-* [Dataset.ipynb](https://github.com/ymollard/python-starter-slides/raw/main/exercises/4.%20Dataset.ipynb)
+- [Types.ipynb](https://github.com/ymollard/python-starter-slides/raw/main/exercises/2.%20Lists.ipynb) 👀 _Make sure that Windows does not add extension `.txt` on its own_
+- [Lists.ipynb](https://github.com/ymollard/python-starter-slides/raw/main/exercises/1.%20Types.ipynb)
+- [Dicts.ipynb](https://github.com/ymollard/python-starter-slides/raw/main/exercises/3.%20Dictionaries.ipynb) 
+- [Dataset.ipynb](https://github.com/ymollard/python-starter-slides/raw/main/exercises/4.%20Dataset.ipynb)
 
 5. Go back to JupyterLab, open and follow the downloaded notebook. 💡 Protip: `Shift + Enter` runs a cell. `Ctrl + M` and then `B` inserts a new cell Below
 
@@ -371,9 +371,9 @@ Here are, for instance, a few commands that your contact manager must accept:
 4. Test!
 
 ## Resources:
-* The `argparse` tutorial : https://docs.python.org/3/howto/argparse.html
-* Regex cheat sheet: https://www.debuggex.com/cheatsheet/regex/python
-* Regex `re` : https://docs.python.org/3/library/re.html?highlight=re#module-re
+- The `argparse` tutorial : https://docs.python.org/3/howto/argparse.html
+- Regex cheat sheet: https://www.debuggex.com/cheatsheet/regex/python
+- Regex `re` : https://docs.python.org/3/library/re.html?highlight=re#module-re
 
 
 ---
@@ -385,9 +385,9 @@ The player guesses a number and gives it to the computer that replies if the act
 
 Once your game is playable, you may add the following features:
 
-* Catch exceptions: what happens when the user enters text instead of a number?
-* Record the gaming time in a variable and display it in the terminal
-* Record and display the 3 best scores when the game starts, associated to player name (Pro-tip: use JSON to store data on disk)
+- Catch exceptions: what happens when the user enters text instead of a number?
+- Record the gaming time in a variable and display it in the terminal
+- Record and display the 3 best scores when the game starts, associated to player name (Pro-tip: use JSON to store data on disk)
 
 ---
 
@@ -404,10 +404,10 @@ The `petname` package generates animal names for instance `crazy-pangolin` or `r
 Read the [flask quick start](https://flask.palletsprojects.com/en/1.1.x/quickstart/#a-minimal-application) and create a basic website serving a single HTML file containing a different animal name every time!
 
 Proceed as follow:
-* Create a HTL template with a basique CSS style and a single centred `<div>` containing a variable
-* Create a WSGI Flask application that serves this template in endpoint `/` (i.e. `http://localhost:5000/`) after you filled in the `<div>` with a new animal name
-* Start the Flask development server according to the tutorial
-* Open URL http://localhost:5000/ to test!
+- Create a HTL template with a basique CSS style and a single centred `<div>` containing a variable
+- Create a WSGI Flask application that serves this template in endpoint `/` (i.e. `http://localhost:5000/`) after you filled in the `<div>` with a new animal name
+- Start the Flask development server according to the tutorial
+- Open URL http://localhost:5000/ to test!
 
 ---
 
@@ -420,18 +420,18 @@ Your child need cheat sheets to review multiplication tables. Create a script th
 ---
 
 In order to create a nice design, HTML and CSS will be your best friends. You can grab some table style online, and then 2 packages will do 99% of the job:
-* `jinja2`: a templating system that has the same syntax than `flask`!
-* `weasyprint`: a PDF document productor from HTML/CSS content 
+- `jinja2`: a templating system that has the same syntax than `flask`!
+- `weasyprint`: a PDF document productor from HTML/CSS content 
 
 ⚠️ If your run Windows or MacOS, `weasyprint` requires Cairo and GTK that are not trivial to install. [Follow the installation guide](https://weasyprint.readthedocs.io/en/stable/install.html))
 
 ---
 
 Proceed this way:
-* Create a `table.html` template containing your its own `<style>` and variables that seems pertinent (e.g. the title, the multiplicator, the content of the table)
-* In Python, open the template with `jinja2` and execute the HTML rendering into a string by filling up the variables with the right value
-* In a single line of code, asks `weasyprint` to convert your HTML string into a PDF file
-* Use `argparse` so that your script accepts in input the mulitplicator and the number of factors, e.g. `generate_table.py --multiplicator=5 --factors=12` to produce a table of 5x1, 5x2 ... till 5x12.
+- Create a `table.html` template containing your its own `<style>` and variables that seems pertinent (e.g. the title, the multiplicator, the content of the table)
+- In Python, open the template with `jinja2` and execute the HTML rendering into a string by filling up the variables with the right value
+- In a single line of code, asks `weasyprint` to convert your HTML string into a PDF file
+- Use `argparse` so that your script accepts in input the mulitplicator and the number of factors, e.g. `generate_table.py --multiplicator=5 --factors=12` to produce a table of 5x1, 5x2 ... till 5x12.
 
 ---
 
@@ -492,7 +492,7 @@ The project aims at developing a Python tool that plots durations of ping reques
 
 Create a Graphical User Interface with `Qt` displaying in a table the route to reach `humancoders.com` from your computer. Some tips:
 
-* discriminate the operating system that runs the Python interpretor: https://docs.python.org/3/library/os.html#os.name
-* Execute system commands from Python: https://docs.python.org/3/library/subprocess.html (note: `os.system` is deprecated)
-* Read the doc [`traceroute` for Linux](https://linux.die.net/man/8/traceroute) and [`tracert` for Windows](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/tracert)
-* See tutorials [*Qt for Python* (`pyside2` aka `PyQt5`)](https://build-system.fman.io/pyqt5-tutorial) and for [tables](https://doc.qt.io/qtforpython/PySide2/QtWidgets/QTableWidget.html)
+- discriminate the operating system that runs the Python interpretor: https://docs.python.org/3/library/os.html#os.name
+- Execute system commands from Python: https://docs.python.org/3/library/subprocess.html (note: `os.system` is deprecated)
+- Read the doc [`traceroute` for Linux](https://linux.die.net/man/8/traceroute) and [`tracert` for Windows](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/tracert)
+- See tutorials [*Qt for Python* (`pyside2` aka `PyQt5`)](https://build-system.fman.io/pyqt5-tutorial) and for [tables](https://doc.qt.io/qtforpython/PySide2/QtWidgets/QTableWidget.html)
