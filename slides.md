@@ -146,6 +146,17 @@ The interpreter:
 - Runs the bytecode
 
 ---
+
+The interpreter produces bytecode in files with `.pyc` and `.pyo` extensions and in  `__pycache__` folders.
+
+![](./img/pycache_bytecode.png)
+
+As a developer, you can just ignore them, the interpreter handles compiling by itself.
+
+Several implementations of the interpreter itself exist: `CPython` (The most popular implementation, in C), `Jython` (in Java), `Pypy` (in Python).
+
+---
+
 ## The REPL
 The REPL aka **Python console** or **Interactive Python**:
 
@@ -157,7 +168,7 @@ The REPL aka **Python console** or **Interactive Python**:
 
 
 ```ipython
-yoan@matebook:~/Repos/python-advanced-slides$ python
+user@computer:~ $ python
 Python 3.9.5 (default, Nov 23 2021, 15:27:38) 
 
 Type "help", "copyright", "credits" or "license" for more information.
@@ -167,16 +178,6 @@ There are 10 apples in the basket
 
 >>> i = 6 + 6
 ```
-
----
-
-The interpreter produces bytecode in files with `.pyc` and `.pyo` extensions and in  `__pycache__` folders.
-
-![](./img/pycache_bytecode.png)
-
-As a developer, you can just ignore them, the interpreter handles compiling by itself.
-
-Several implementations of the interpreter itself exist: `CPython` (The most popular implementation, in C), `Jython` (in Java), `Pypy` (in Python).
 
 ---
 
@@ -232,7 +233,7 @@ It is recommended to type your code but it remains optional.
 ---
 🚨 **Beware with floats**
 
-Python's floats are IEE754 floats with mathematically incorrect rounding precision:
+Python's floats are IEEE754 floats with mathematically incorrect rounding precision:
 ```python
 0.1 + 0.1 + 0.1 - 0.3 == 0    # This is False 😿
 print(0.1 + 0.1 + 0.1 - 0.3)  # Returns 5.551115123125783e-17 but not 0
@@ -250,6 +251,7 @@ Beware not to initialize `Decimal` with float since the precision is already los
 
 ---
 
+##### The string
 The `str`type is an **immutable** string.
 
 **Definition**: An object is said **immutable**  when its value(s) canot be updated after the initial assignment. Otherwise they are **mutable**.
@@ -260,7 +262,8 @@ t = ("A", "tuple", "is", "immutable")
 ```
 Example: put the first letter of these sequences in lower case:
 ```python
-s = "This does not work"[0] = "t"
+s = "This does not work"
+s[0] = "t"
 # TypeError: 'str' object does not support item assignment
 
 s = "t" + "This works!"[1:]
@@ -292,7 +295,7 @@ And this is the type used for returning several values in a function.
 A list is a mutable sequence of objects using integer indexes:
 
 ```python
-l = ["List example", 42, True, ["another", "list"]]
+l = ["List example", 42, ["another", "list"], True]
 
 l[0]   # Access index 0 of l, i.e. the first item
 
@@ -337,37 +340,11 @@ d.values()   # dict_values []
 *With Python 3.7 and below, dictionaries are unordered (see `OrderedDict` if needed)*
 
 ---
-
-### Comprehensions
-A **comprehension** is an inline notation to build a new sequence (list, dict, set).
-Here is a **list-comprehension**:
-```python
-l = [i*i for i in range(10)]  # Select i*i for each i in the original "range" sequence
-# Returns [0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
-```
-
-You may optionally filter the selected values with an `if` statement:
-
-```python
-l = [i*i for i in range(100) if i*i % 10 == 0]  # Select values that are multiple of 10
-# Returns [0, 100, 400, 900, 1600, 2500, 3600, 4900, 6400, 8100]
-
-l = [(i, 2*i, 3*i) for i in range(5)] # Here we select tuples of integers:
-# Returns [(0, 0, 0), (1, 2, 3), (2, 4, 6), (3, 6, 9), (4, 8, 12)]
-```
-
-Dict-comprehensions also work:
-```python
-d = {i: i*i for i in range(10)}
-# Returns {0: 0, 1: 1, 2: 4, 3: 9, 4: 16, 5: 25, 6: 36, 7: 49, 8: 64, 9: 81}
-```
-
----
 ### Parameter passing
 
 What happens during an assignment?
 ```python
-list1 = [1, 2, 3]
+list1 = [10, 20, 30]
 
 list2 = list1     # Assignment by reference
 ```
@@ -499,11 +476,11 @@ print("The searched integer is", i)   # The answer is 33
 
 ```python
 if mark < 8:
-    print(‘You failed the exam’)
+    print("You failed the exam")
 elif mark < 10:
-    print(‘You must retake the exam’)
+    print("You must retake the exam")
 else:
-    print(‘You passed the exam’)
+    print("You passed the exam")
 
 ```
 
@@ -552,13 +529,15 @@ print(i, "is the searched number")
 The `continue` statement aborts the current loop and resumes at the next value:
 
 ```python
-names = ['Bob','Alice','Daniel','bateau', 'Brice']
+integers = [-5, 10, 42, -9, 54, 1, -1, 55, -8, -84, 12]
 
-# We are looking for the names that do NOT start with upper case B
-for name in names:
-    if name[0] == ‘B’:
-        continue  # skips and jumps to the next
-    print(name, "doesn`t start with upper case B")
+# We want to call process(i) only on positive integers from the above list
+for i in integers:
+    if i <0:
+        continue  # skips i since it's negative and jumps to the next i
+
+    print(i, "is positive and must be processed")
+    process(i)
 ```
 
 ---
@@ -574,6 +553,14 @@ return: the sum of a and b
 def my_custom_sum(a, b):
    return a + b
 ```
+
+💡 **Good practice:** Add docstrings to your functions by using `"""`.
+
+After typing `"""` Your IDE may autocomplete the docstring with a sketch that you can complete the text in English.
+
+The expected format of the docstring is **reStructuredText** but other formats exist.
+
+Docstrings can also be used to document a variable, a class, a whole file... 
 
 ---
 
@@ -618,7 +605,7 @@ p = sentence(2, 5)
 p = sentence(oranges=2) 
 ```
 
-The double start \*\* in the flag that means **0 or n named parameters**. They are received as a dictionary:
+The double star \*\* in the flag that means **0 or n named parameters**. They are received as a dictionary:
 
 ```python
 def sentence(**kwargs):
@@ -640,8 +627,54 @@ sentence(apples=2, oranges=5)
 - `int()`, `float()`, `list()`, `dict()`...: Convert the parameter (cast)
 
 ---
+
+### Comprehensions
+A **comprehension** is an inline notation to build a new sequence (list, dict, set).
+Here is a **list-comprehension**:
+```python
+l = [i*i for i in range(10)]  # Select i*i for each i in the original "range" sequence
+# Returns [0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
+```
+
+You may optionally filter the selected values with an `if` statement:
+
+```python
+l = [i*i for i in range(100) if i*i % 10 == 0]  # Select values that are multiple of 10
+# Returns [0, 100, 400, 900, 1600, 2500, 3600, 4900, 6400, 8100]
+
+l = [(i, 2*i, 3*i) for i in range(5)] # Here we select tuples of integers:
+# Returns [(0, 0, 0), (1, 2, 3), (2, 4, 6), (3, 6, 9), (4, 8, 12)]
+```
+
+Dict-comprehensions also work:
+```python
+d = {i: i*i for i in range(10)}
+# Returns {0: 0, 1: 1, 2: 4, 3: 9, 4: 16, 5: 25, 6: 36, 7: 49, 8: 64, 9: 81}
+```
+
+---
 ### Introspection
-Page 29
+
+
+Use `type()` to introspect the type of...
+```python
+type(42)        # ... a literal
+# Will return int
+
+my_text = "Hello world"
+type(my_text)   # ... a variable
+# Will return str
+```
+
+Use `isinstance()` to introspect the type of...
+```python
+isinstance(42, float)
+# Will return False because 42 is an int
+
+my_text = "Hello world"
+isinstance(my_text, str)
+# Will return True
+```
 
 ---
 ## Exceptions
@@ -733,21 +766,28 @@ resumed_code2()
 
 ---
 
-Other uses of the try/except block:
+### Other uses of exceptions
 
+Catch several types of exceptions:
 ```python
 try:
     protected_code()
-raise IOError, FileNotFoundError:
+except IOError, FileNotFoundError:
     pass
 ```
 
+Trigger an exception:
+```python
+i = some_function()
 
+if i <0:
+    raise ValueError("Negative values are not authorized")
+```
 
 ---
 ## Import and use installed libraries
 
-When a library is installed already, use `import` or `from ... impact` statements to import and use it:
+When a library is installed already, use `import` or `from ... import` statements to import and use it:
 
 ```python
 import math
@@ -786,17 +826,17 @@ Libraries are **buit-in** if they are pre-installed with any Python interpreter 
 ---
 ### JupyterLab, the web-based IDE for notebooks
 
-![](./img/jupyterlab.png)
+![width:950px](./img/jupyterlab.png)
 
 ---
 ### Visual Studio Code
 
-## TODO capture
+![width:800px](./img/vscode.png)
 
 ---
 ### Pycharm Pro and PyCharm Community
 
-![](./img/pycharm.jpg)
+![width:950px](./img/pycharm.jpg)
 
 ---
 ### Install and use JupyterLab from Pycharm
@@ -806,6 +846,8 @@ Libraries are **buit-in** if they are pre-installed with any Python interpreter 
 - Open the system terminal (tab at the bottom)
 - Type `pip install jupyterlab`
 - Type `jupyter lab`
+
+... and now follow the notebooks of the [first exercise](/exercises.html#3).
 
 ---
 

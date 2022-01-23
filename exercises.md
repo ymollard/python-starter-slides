@@ -57,13 +57,15 @@ https://starter.python.training.aubrune.eu/
 
 3. Launch Jupyter Lab by typing `jupyter lab` in the same terminal
 
-4. Right click and `Save As` in your PyCharm project's folder the following notebooks:
-- [Types.ipynb](https://github.com/ymollard/python-starter-slides/raw/main/exercises/2.%20Lists.ipynb) 👀 _Make sure that Windows does not add extension `.txt` on its own_
-- [Lists.ipynb](https://github.com/ymollard/python-starter-slides/raw/main/exercises/1.%20Types.ipynb)
-- [Dicts.ipynb](https://github.com/ymollard/python-starter-slides/raw/main/exercises/3.%20Dictionaries.ipynb) 
-- [Dataset.ipynb](https://github.com/ymollard/python-starter-slides/raw/main/exercises/4.%20Dataset.ipynb)
+4. Right click the following notebooks and `Save As` in your PyCharm project's folder:
 
-5. Go back to JupyterLab, open and follow the downloaded notebook. 💡 Protip: `Shift + Enter` runs a cell. `Ctrl + M` and then `B` inserts a new cell Below
+[1. Types.ipynb](https://github.com/ymollard/python-starter-slides/raw/main/exercises/1.%20Types.ipynb) – [2. Lists.ipynb](https://github.com/ymollard/python-starter-slides/raw/main/exercises/2.%20Lists.ipynb) – [3. Dicts.ipynb](https://github.com/ymollard/python-starter-slides/raw/main/exercises/3.%20Dictionaries.ipynb) – [4. Dataset.ipynb](https://github.com/ymollard/python-starter-slides/raw/main/exercises/4.%20Dataset.ipynb)
+
+👀 _Make sure that Windows does not add extension `.txt` on its own_
+
+5. Go back to JupyterLab, open and follow the downloaded notebook.
+
+💡 Protip: `Shift + Enter` runs a cell. `Ctrl + M` and then `B` inserts a new cell Below
 
 ---
 
