@@ -30,16 +30,37 @@ https://starter.python.training.aubrune.eu/
 
 #  Schedule of DAY 1
 
+1. [ CHARACTERISTICS AND SYNTAX OF PYTHON](#6)
+    1.1. [ Characteristics](#10)
+    1.2. [ Python's typing](#15)
+    1.3. [ Control structures](#23)
+    1.4. [ Exceptions](#40)
+    1.5. [ Import and use installed libraries](#52)
+    1.6. [ Working environment](#54)
 
 
 ---
 
 #  Schedule of DAY 2
 
+2. [ MODULES, PACKAGES AND LIBRARIES](#59)
+    2.1. [ Import from libraries](#60)
+    2.2. [ Structure of Python packages](#63)
+    2.3. [ The Python Package Index (PyPI)](#67)
+    2.4. [ Virtual environments (venv)](#72)
+    2.5. [ Object-Oriented Programming (O.O.P.)](#81)
+
 
 ---
 
 #  Schedule of DAY 3
+
+3. [ POPULAR LIBRARIES](#95)
+    3.1. [ Popular built-in libraries (coming with all Python distributions)](#96)
+    3.2. [ Popular non-builtin libraries (to be installed with pip if needed)](#97)
+    3.3. [ Other non-builtin libraries for code quality](#98)
+    3.4. [ Charset and encoding](#103)
+    3.5. [ The final point](#108)
 
 
 ---
@@ -66,7 +87,7 @@ https://starter.python.training.aubrune.eu/
 ---
 
 #  DAY 1
-# CHARACTERISTICS OF PYTHON
+# CHARACTERISTICS AND SYNTAX OF PYTHON
 
 ---
 
@@ -82,7 +103,7 @@ Python is an **Interpreted multi-paradigm programming language** from 1991\* for
 
 ---
 
-## Pros
+### Pros
 
 - **Concise** and readable language, no superfluous
 - **Light syntax** to focus on the content, not the form
@@ -90,14 +111,14 @@ Python is an **Interpreted multi-paradigm programming language** from 1991\* for
 - Automatic **memory management**
 - A lot of libraries available in the PyPI index (store) + alternatives
 - **Community-centric**: Documented on [docs.python.org](https://docs.python.org) + other community resources
-- **Multiplatform**: Windows, UNIX, BSD, MacOS … even microcontrollers with 16k of RAM..
+- **Multiplatform**: Windows, UNIX, BSD, MacOS … even microcontrollers with 16k of RAM!
 -  **Interoperable**: Bindings to C++/Java …
 
 ![bg right:20% 40%](./img/pros.png)
 
 
 ---
-## Cons
+### Cons
 
 - Slightly slower than compiled languages
 - Only server-side, not suitable for mobiles
@@ -125,7 +146,7 @@ It is easy to make robust Python applications with good practices: e.g. explicit
 - Parameters passing by reference, except primitive types
 
 ---
-## The Python interpreter
+### The Python interpreter
 
 Python files use extension `.py`, e.g.:
 
@@ -157,7 +178,7 @@ Several implementations of the interpreter itself exist: `CPython` (The most pop
 
 ---
 
-## The REPL
+### The REPL
 The REPL aka **Python console** or **Interactive Python**:
 
 
@@ -181,7 +202,7 @@ There are 10 apples in the basket
 
 ---
 
-## Programming paradigms
+### Programming paradigms
 Python is multi-paradigm:
 - **Imperative**: *instructions create state changes*
 - **Object-oriented**: *instructions are grouped with their data in objects/classes*
@@ -193,7 +214,7 @@ All 3 paradigms are popular in the Python community, and often mixed all togethe
 
 
 ---
-### Python's typing
+## Python's typing
 Python typing is **dynamic** and inferred from the value.
 
 🦆 Definition of **duck typing**: An object that has certain properties is treated independently of its actual runtime class. 
@@ -208,27 +229,6 @@ b = True                             # bool
 c = 1 + 1j                           # complex
 n = None                             # NoneType
 ```
-
----
-
-### Type hints
-
-In Python 3.5 and above, **type hints** are supported.
-```python
-i: int = 42
-f: float = 4.2
-b: bool = True
-```
-
-Typing is only intended for the type checker (e.g. `mypy`, or `Pycharm`).
-At runtime, type hints are ignored by the interpreter.
-```python
-i: int = 4.2
-``` 
-This will run like a charm but if your IDE is equipped with a type checker you will be noticed about the type mismatch between the variable and the literal.
-
-It is recommended to type your code but it remains optional.
-
 
 ---
 🚨 **Beware with floats**
@@ -251,7 +251,7 @@ Beware not to initialize `Decimal` with float since the precision is already los
 
 ---
 
-##### The string
+### The string
 The `str`type is an **immutable** string.
 
 **Definition**: An object is said **immutable**  when its value(s) canot be updated after the initial assignment. Otherwise they are **mutable**.
@@ -272,7 +272,7 @@ s = "t" + "This works!"[1:]
 ```
 
 ---
-##### The tuple
+### The tuple
 The tuple is the Python type for an **array**. It is an immutable sequence of objects:
 
 ```python
@@ -290,7 +290,7 @@ a, b = b, a   # Value swapping
 And this is the type used for returning several values in a function.
 
 ---
-##### The list
+### The list
 
 A list is a mutable sequence of objects using integer indexes:
 
@@ -316,7 +316,7 @@ l.pop()             # Remove from the end. pop(0) removes from the start
 
 ---
 
-##### The dictionary
+### The dictionary
 
 The dictionary is a key-value pair container, mutable and ordered:
 
@@ -338,6 +338,26 @@ d.values()   # dict_values []
 ```
 
 *With Python 3.7 and below, dictionaries are unordered (see `OrderedDict` if needed)*
+
+---
+
+### Type hints
+
+In Python 3.5 and above, **type hints** are supported.
+```python
+i: int = 42
+f: float = 4.2
+b: bool = True
+```
+
+Typing is only intended for the type checker (e.g. `mypy`, or `Pycharm`).
+At runtime, type hints are ignored by the interpreter.
+```python
+i: int = 4.2
+``` 
+This will run like a charm but if your IDE is equipped with a type checker you will be noticed about the type mismatch between the variable and the literal.
+
+It is recommended to type your code but it remains optional.
 
 ---
 ### Parameter passing
@@ -802,7 +822,7 @@ value = sqrt(25)
 With `from ... import`, resources are loaded in the global scope and can be accessed without prefix. 
 
 ---
-## Popular built-in libraries
+### Popular built-in libraries
 
 - `math`, `time`, `random`
 - `logging` handle and organize log entries (debug, info, warn...)
@@ -851,11 +871,13 @@ Libraries are **buit-in** if they are pre-installed with any Python interpreter 
 
 ---
 
-## DAY 2
+#  DAY 2
+# MODULES, PACKAGES AND LIBRARIES
 
+---
 
-### Import statement
-Load resources from libraries.
+## Import from libraries
+Load resources from libraries using the **import statement**.
 
 Import a unique name: 
 ```python
@@ -873,7 +895,7 @@ The resource is imported into the global scope.
 
 ---
 
-## Difference between modules and packages
+### Difference between modules and packages
 
 A **module** is a Python file, e.g. `mymodule.py`. The module name is `mymodule`
 
@@ -904,7 +926,7 @@ Direct call to the interpreter is possible but NOT recommended, since it will fo
 The Windows shell ignore shebangs.
 
 ---
-### Structure of Python packages
+## Structure of Python packages
 - Packages and sub-packages allow to bring a hierarchy to your code
 - The package's hierarchy is inherited from the files-and-folders hierarchy 
 - Modules hold resources that can be imported later on, e.g.:
@@ -1352,12 +1374,12 @@ Out[1]:
 ```
 
 ---
-# DAY 3
-#  POPULAR LIBRARIES
+#  DAY 3
+# POPULAR LIBRARIES
 
 ---
 
-### Popular built-in libraries (coming with all Python distributions)
+## Popular built-in libraries (coming with all Python distributions)
 
 - [`math`](https://docs.python.org/3/library/math.html), [`time`](https://docs.python.org/3/library/time.html), [`random`](https://docs.python.org/3/library/random.html), [`re`](https://docs.python.org/3/library/re.html): tools for *math*, *time*, *random generation* & *regexes*
 - [`logging`](https://docs.python.org/3/library/logging.html): handle log files and streams with different levels and filters
@@ -1373,7 +1395,8 @@ Out[1]:
 
 ---
 
-### Popular non-builtin libraries (to be installed with pip if needed)
+## Popular non-builtin libraries (to be installed with pip if needed)
+
 - [`numpy`](https://numpy.org/), [`matplotlib`](https://matplotlib.org/), [`scikit-learn`](https://scikit-learn.org/), [`pandas`](https://pandas.pydata.org/): numerical calculus & data 
 - [`click`](https://click.palletsprojects.com/): beautiful command line interfaces
 - [`sqlalchemy`](https://www.sqlalchemy.org/): connect to a databse, emit SQL requests
@@ -1387,7 +1410,7 @@ Out[1]:
 
 ---
 
-### Other non-builtin libraries for code quality
+## Other non-builtin libraries for code quality
 - [`sphinx`](https://www.sphinx-doc.org): build beautiful documentation out of code documentation
 - [`pytest`](https://pytest.org/), [`unittest`](https://docs.python.org/3/library/unittest.html): test frameworks
 - [`tox`](https://tox.readthedocs.io/): test automation (e.g. _Continuous Integration_)
@@ -1400,7 +1423,7 @@ Out[1]:
 ---
 
 All builit-in libraries are documented in 8 languages on:
-#  [📖 docs.python.org](https://docs.python.org/)
+###  [📖 docs.python.org](https://docs.python.org/)
 This documentation is community-written.
 
 Non-builtin libraries (e.g. those that you install via pip) usually have their documentation on their own web server. 
@@ -1408,7 +1431,7 @@ Non-builtin libraries (e.g. those that you install via pip) usually have their d
 Also, [readthedocs.io](https://readthedocs.io/) is a common place for some of them.
 
 ---
-## Regular expressions `re`
+### Regular expressions `re`
 
 Match patterns from a text: 
 - E-mail addresses: `foo@bar.fr`
@@ -1529,7 +1552,7 @@ In average, UTF-16 is more efficient for Asian texts compared to UTF-8. But UTF-
 
 ---
 
-# The final point
+## The final point
 
 As of January, 2022, Python 3.9 and 3.10 are the stable versions.
 
@@ -1546,7 +1569,7 @@ Main differences Python 2 → Python 3:
 
 ---
 
-## The [Python Enhancement Proposals (PEP)](https://www.python.org/dev/peps/) and the [PEP 8](https://www.python.org/dev/peps/pep-0008/)
+### The [Python Enhancement Proposals (PEP)](https://www.python.org/dev/peps/) and the [PEP 8](https://www.python.org/dev/peps/pep-0008/)
 
 ![](./img/pep8.png)
 
