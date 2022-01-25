@@ -788,20 +788,46 @@ resumed_code2()
 
 ### Other uses of exceptions
 
-Catch several types of exceptions:
 ```python
-try:
+try: # Different exception types associated to the same substitution block
     protected_code()
 except IOError, FileNotFoundError:
-    pass
+    substitution_code()
+```
+```python
+try:         # Different substitution blocks for different exception types
+    protected_code()
+except IOError:
+    substitution_code1()
+except FileNotFoundError:
+    substitution_code2()
+```
+```python
+if some_positive_value < 0:     # Trigger an exception by yourself
+    raise ValueError("Negative values are not authorized")
 ```
 
-Trigger an exception:
-```python
-i = some_function()
+---
 
-if i <0:
-    raise ValueError("Negative values are not authorized")
+### Context manager: the `with` statement
+
+The keyword `with` is a context manager that protects a resource to make sure it is actually teared down after allocation in any case.
+
+```python
+f = open("file.json", "w")
+f.write()
+# PROCESSING WRITING [...] 
+f.write()
+f.close()
+```
+
+What if an exception occurs during the processing of the file? It wouldn't be closed.
+
+The context manager ensures that the resource is automatically closed in any case:
+
+```python
+with open("file.json", "w") as f:
+    f.write()
 ```
 
 ---
@@ -1256,7 +1282,7 @@ The **constructor** is the specific method that instanciates an object out of a 
 
 ```python
 class Test:
-    def __init__():
+    def __init__(self):
         self.attribute = 42
 ```
 
@@ -1268,16 +1294,15 @@ This is the class **declaration**:
 
 ```python
 class Apartment:
+    def __init__(self):       # Implicit first parameter is self
+        self.available = True       # We are creating an attribute in self
+        self.price = 90000
 
-   def __init__(self):                 # Implicit first parameter is self
-	   self.available = True   # We are creating an attribute in self
-	   self.price = 90000
+    def sell(self):
+        self.available = False
 
-	def sell(self):
-   	    self.available = False
-
-	def reduce_price(self, percentage=5):
-   	    self.price = self.price * (1-percentage/100)
+    def reduce_price(self, percentage=5):
+        self.price = self.price * (1-percentage/100)
 ```
 
 This is the class **instanciation**:
@@ -1299,6 +1324,31 @@ apart_dupont = Apartment(12000)    # Now the price is compulsory
 apart_haddock = Apartment(90000)
 
 apart_haddock.available = False
+```
+
+---
+
+```python
+class Foo:
+    def __init__(self):
+        self.public = 0
+        self._protected = 0
+        self.__private = 0        # ⚠️ Name mangling applies here
+```
+
+Respect of protected attributes is not enforced but private ones rely on name mangling:
+
+```python
+class BankAccount:
+     def __init__(self):
+         self.__balance = 3000
+         
+class Client:
+     def make_transaction(self, bank_account: "BankAccount"):
+         bank_account.__balance += 1000
+         
+Client().make_transaction(BankAccount())
+# AttributeError: 'BankAccount' object has no attribute '_Client__balance'
 ```
 
 ---
