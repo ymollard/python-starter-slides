@@ -473,18 +473,25 @@ This is a program that displays a quotation about love every time you run it.
 
 # Mini-project 5F. Plot ping durations [Medium-Hard]
 `ping` is a network tool sending ICMP requests to hosts. An ICMP request is sent every second and displays its round-trip duration in milliseconds.
+
 The project aims at developing a Python tool that plots durations of ping requests.
 
-1. Use `argparse` to accept arguments `host` (string) and `iterations` (int)
-2. Use `subprocess` to call `ping` on the host passed in argument (On Windows, add parameter `-t` so that the ping does not automatically stop after 4 pings by default)
-3. Capture the `stdout` stream of the subprocess into Python variables
-4. Exclude header/footer lines and error lines based on their format (split strings on delimiters)
+![width:500](img/exercises/pingplot-baidu.com.png)
 
 ---
 
-5. convert each ping duration in millisec into a float and store the list of durations
+1. Use `argparse` to accept arguments `host` (string) and `iterations` (int)
+2. Use `subprocess` to call `ping` on the host passed in argument
+**On Windows**, pass `iterations` to `-n` and add argument `-t`.
+**On Linux**, pass `iterations` to `-c`.
+3. Capture the `stdout` stream of the subprocess into Python variables
+4. Exclude header/footer lines and error lines based on their format (split strings on delimiters)
+5. Convert each ping duration in millisec into a float and store the list of durations
 6. Terminate the ping subprocess after the number of iterations passed in argument
-7. Plot all ping durations, a dashed mean (`--` style) and the standard deviation (`fill_between`), with `matplotlib`
+7. Use `matplotlib` to plot all ping durations, a dashed mean plot (`style="--"`), and the standard deviation (`fill_between`) computed with `numpy`. 
+
+
+_**Note:** ⚠️ `os.system` is deprecated, use `subprocess instead`_
 
 ---
 
@@ -494,7 +501,7 @@ The project aims at developing a Python tool that plots durations of ping reques
 
 Create a Graphical User Interface with `Qt` displaying in a table the route to reach `humancoders.com` from your computer. Some tips:
 
-- discriminate the operating system that runs the Python interpretor: https://docs.python.org/3/library/os.html#os.name
-- Execute system commands from Python: https://docs.python.org/3/library/subprocess.html (note: `os.system` is deprecated)
+- Execute system commands from Python with [`subprocess`](https://docs.python.org/3/library/subprocess.html)
+_(⚠️ `os.system` is deprecated)_
 - Read the doc [`traceroute` for Linux](https://linux.die.net/man/8/traceroute) and [`tracert` for Windows](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/tracert)
 - See tutorials [*Qt for Python* (`pyside2` aka `PyQt5`)](https://build-system.fman.io/pyqt5-tutorial) and for [tables](https://doc.qt.io/qtforpython/PySide2/QtWidgets/QTableWidget.html)
