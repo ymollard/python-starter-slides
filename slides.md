@@ -35,32 +35,34 @@ https://starter.python.training.aubrune.eu/
     1.2. [ Python's typing](#15)
     1.3. [ Control structures](#23)
     1.4. [ Exceptions](#40)
-    1.5. [ Import and use installed libraries](#52)
-    1.6. [ Working environment](#54)
+    1.5. [ Import and use installed libraries](#53)
+    1.6. [ Working environment](#55)
 
 
 ---
 
 #  Schedule of DAY 2
 
-2. [ MODULES, PACKAGES AND LIBRARIES](#59)
-    2.1. [ Import from libraries](#60)
-    2.2. [ Structure of Python packages](#63)
-    2.3. [ The Python Package Index (PyPI)](#67)
-    2.4. [ Virtual environments (venv)](#72)
-    2.5. [ Object-Oriented Programming (O.O.P.)](#81)
+2. [ MODULES, PACKAGES AND LIBRARIES](#60)
+    2.1. [ Import from libraries](#61)
+    2.2. [ Structure of Python packages](#64)
+    2.3. [ The Python Package Index (PyPI)](#68)
+    2.4. [ Virtual environments (venv)](#73)
+    2.5. [ Object-Oriented Programming (O.O.P.)](#82)
+
 
 
 ---
 
 #  Schedule of DAY 3
 
-3. [ POPULAR LIBRARIES](#95)
-    3.1. [ Popular built-in libraries (coming with all Python distributions)](#96)
-    3.2. [ Popular non-builtin libraries (to be installed with pip if needed)](#97)
-    3.3. [ Other non-builtin libraries for code quality](#98)
-    3.4. [ Charset and encoding](#103)
-    3.5. [ The final point](#108)
+3. [ POPULAR LIBRARIES](#97)
+    3.1. [ Popular built-in libraries (coming with all Python distributions)](#98)
+    3.2. [ Popular non-builtin libraries (to be installed with pip if needed)](#99)
+    3.3. [ Other non-builtin libraries for code quality](#100)
+    3.4. [ Charset and encoding](#105)
+    3.5. [ The final point](#110)
+
 
 
 ---
