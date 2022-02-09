@@ -106,25 +106,26 @@ _______________________
 ---
 
 5. Define and initialize the following variables to coherent initial values:
-  * `words`: a list of possible words to be guessed
-  * `secret_word`: a secret wrod randomly picked among the previous list (use for instance `random.choice`)
-  * `displayed_word`: the partially hidden word, i.e. the word of same length as the secret word in which every letter is remplaced by an underscore
-  * `max_attempts`: the number of remaining attempts
+- `words`: a list of possible words to be guessed
+- `secret_word`: a secret wrod randomly picked among the previous list (use for instance `random.choice`)
+- `displayed_word`: the partially hidden word, i.e. the word of same length as the secret word in which every letter is remplaced by an underscore
+- `max_attempts`: the number of remaining attempts
 
 ---
 
 6. Add a **game loop** that:
-  * Displays the partially hidden word as well as the number of remaining attempts
-  * Prompts the player to enter a valid letter with  `input_letter()`
-  * Remplaces potential matches of this letter from `secret_word` in word `displayed_word`
-  * Checks the game state: exite the program with an appropriate message if the player wins or looses
+- Displays the partially hidden word as well as the number of remaining attempts
+- Prompts the player to enter a valid letter with  `input_letter()`
+- Remplaces potential matches of this letter from `secret_word` in word `displayed_word`
+- Checks the game state: exite the program with an appropriate message if the player wins or looses
 
 You game must now be playable!
 
 7. **Optional questions**:
-    * Store the 3 best scores in a JSON file, shown were the game starts.
-    * Install and use [`rich`](https://pypi.org/project/rich/) with [`click`](https://click.palletsprojects.com/) to make a beautiful interactive UI
-    * Draw a hanged man at each turn _(see the console drawing previously shown)_ 
+- Store the 3 best scores in a JSON file, shown were the game starts.
+- Install and use [`rich`](https://pypi.org/project/rich/) with [`click`](https://click.palletsprojects.com/) to make a beautiful interactive UI
+- Draw a hanged man at each turn _(see the console drawing previously shown)_ 
+
 ---
 # Mini-project 3. Build a full package – Money transfer simulator
 
@@ -171,7 +172,7 @@ Bob is currently overdrawn. To prevent this kind of situation, its customer advi
 - 2.1. Create the `InsufficientBalance` exception type inheriting from `ValueError`
 
 - 2.2. Implement a class `BlockedBankAccount` so that:
-  - the `BlockedBankAccount` inherits from `BankAccount`. Make sure you do not forget to call parent method with the `super()` keyword if necessary
+  - the `BlockedBankAccount` inherits from `BankAccount`. Make sure you do not forget to call parent methods with `super()` if necessary
   - the `transfer_to` methods overrides the parent method, with the only difference that it raises `InsufficientBalance` if the balance is not sufficiently provided to execute the transfer
 
 ---
