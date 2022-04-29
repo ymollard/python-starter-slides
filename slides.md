@@ -260,7 +260,6 @@ The `str`type is an **immutable** string.
 
 ```python
 s = "A string is immutable"
-t = ("A", "tuple", "is", "immutable")
 ```
 Example: put the first letter of these sequences in lower case:
 ```python
@@ -269,8 +268,6 @@ s[0] = "t"
 # TypeError: 'str' object does not support item assignment
 
 s = "t" + "This works!"[1:]
-
-"".join(["t"] + list("This also works!")[1:])
 ```
 
 ---
@@ -350,6 +347,8 @@ In Python 3.5 and above, **type hints** are supported.
 i: int = 42
 f: float = 4.2
 b: bool = True
+l: list = ["a", "b", "c"]
+l: list[str] = ["a", "b", "c"]
 ```
 
 Typing is only intended for the type checker (e.g. `mypy`, or `Pycharm`).
@@ -566,13 +565,16 @@ for i in integers:
 ### Function definition
 
 ```python
+def my_custom_sum(a, b):
 """
 Computes the sum of 2 floats or integers
-a: a float or integer
-b: a float or integer
-return: the sum of a and b
+:param a: the first element to sum
+:type a: float or int
+:param b: the second element to sum
+:type b: float or int
+:return: the sum of a and b
+:rtype: float or int
 """
-def my_custom_sum(a, b):
    return a + b
 ```
 
@@ -583,6 +585,23 @@ After typing `"""` Your IDE may autocomplete the docstring with a sketch that yo
 The expected format of the docstring is **reStructuredText** but other formats exist.
 
 Docstrings can also be used to document a variable, a class, a whole file... 
+
+---
+
+With explicit typing, type hints may be redundant with the docstring:
+```python
+def my_custom_sum(a: Union[int, float], b: Union[int, float]) -> : Union[int, float]:
+    """
+    Computes the sum of 2 floats or integers
+    :param a: the first element to sum
+    :type a: float or int
+    :param b: the second element to sum
+    :type b: float or int
+    :return: the sum of a and b
+    :rtype: float or int
+    """
+    return a + b
+```
 
 ---
 
@@ -622,8 +641,8 @@ A **named parameter** is passed to a function via its name instead of its positi
 def sentence(apples=1, oranges=10):
    return f"He robbed {apples} apples and {oranges} oranges"
 
-p = sentence()
 p = sentence(2, 5)
+p = sentence()
 p = sentence(oranges=2) 
 ```
 
@@ -904,25 +923,6 @@ Libraries are **buit-in** if they are pre-installed with any Python interpreter 
 
 ---
 
-## Import from libraries
-Load resources from libraries using the **import statement**.
-
-Import a unique name: 
-```python
-from math import sqrt
-value = sqrt(25)
-```
-
-Import an entire module:
-```python
-import math
-value = math.sqrt(25)
-```
-
-The resource is imported into the global scope.
-
----
-
 ### Difference between modules and packages
 
 A **module** is a Python file, e.g. `mymodule.py`. The module name is `mymodule`
@@ -993,7 +993,7 @@ value = my_sqrt(25)
 Relative import from a parent folder:
 ```python
 from ..my_math import my_sqrt
-value = sqrt(25)
+value = my_sqrt(25)
 ```
 
 - Do not put any slash such as ~~`import ../my_math`~~
