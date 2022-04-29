@@ -220,7 +220,7 @@ We will organise our accounts with the following terminology:
 We would like to be able to import the classes from than manner:
 ```python
 from account.external.agios import AgiosBankAccount
-from account.external.blocked import BlockedBankAccount
+from account.external.blocked import BlockedBankAccount, InsufficientBalance
 from account.internal import BankAccount
 ```
 
@@ -236,10 +236,9 @@ Create an empty script `scenario1.py`for the scenario.
 
 - 4.3. Move the class declaration of `AgiosBankAccount` in `agios.py`
 
-- 4.4. Move the class declaration of `BlockedBankAccount` in `blocked.py`
+- 4.4. Move the class declarations of `BlockedBankAccount` and `InsufficientBalance` in `blocked.py`
 
 - 4.5. Move the class declaration of `BankAccount` in `internal.py`
-
 
 - 4.6. Move the scenario (i.e. the successive instanciation of all accounts of companies and individuals) in `scenario1.py`
 
