@@ -34,21 +34,20 @@ https://starter.python.training.aubrune.eu/
     1.1. [ Characteristics](#10)
     1.2. [ Python's typing](#15)
     1.3. [ Control structures](#23)
-    1.4. [ Exceptions](#40)
-    1.5. [ Import and use installed libraries](#53)
-    1.6. [ Working environment](#55)
+    1.4. [ Exceptions](#41)
+    1.5. [ Import and use installed libraries](#54)
+    1.6. [ Working environment](#56)
 
 
 ---
 
 #  Schedule of DAY 2
 
-2. [ MODULES, PACKAGES AND LIBRARIES](#60)
-    2.1. [ Import from libraries](#61)
-    2.2. [ Structure of Python packages](#64)
-    2.3. [ The Python Package Index (PyPI)](#68)
-    2.4. [ Virtual environments (venv)](#73)
-    2.5. [ Object-Oriented Programming (O.O.P.)](#82)
+2. [ MODULES, PACKAGES AND LIBRARIES](#61)
+    2.1. [ Structure of Python packages](#64)
+    2.2. [ The Python Package Index (PyPI)](#68)
+    2.3. [ Virtual environments (venv)](#73)
+    2.4. [ Object-Oriented Programming (O.O.P.)](#82)
 
 
 
