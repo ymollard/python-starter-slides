@@ -280,6 +280,8 @@ t = True, True, 42.5
 
 t = (1, (2, 3), 4, [5,6])
 
+element = t[1]  # Returns the "first" element from t 
+
 ```
 It is also used during unpacking:
 ```python
@@ -332,7 +334,7 @@ d.update({"foo": "bar"})
 
 d.keys()     # dict_keys ["key1", "key2", 1]
 
-d.values()   # dict_values []
+d.values()   # dict_values ["value1", 42, True]
 ```
 
 *With Python 3.7 and below, dictionaries are unordered (see `OrderedDict` if needed)*
@@ -589,7 +591,9 @@ Docstrings can also be used to document a variable, a class, a whole file...
 
 With explicit typing, type hints may be redundant with the docstring:
 ```python
-def my_custom_sum(a: Union[int, float], b: Union[int, float]) -> : Union[int, float]:
+from typing import Union
+
+def my_custom_sum(a: Union[int, float], b: Union[int, float]) -> Union[int, float]:
     """
     Computes the sum of 2 floats or integers
     :param a: the first element to sum
