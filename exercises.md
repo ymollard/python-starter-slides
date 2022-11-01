@@ -31,19 +31,19 @@ https://starter.python.training.aubrune.eu/
 
 [ Exercise 1. Practice Python's lists and dictionaries](#3)
 
-[ Mini-project 2: The hanged man](#4)
+[ Mini-project 2: The hanged man](#5)
 
-[ Mini-project 3. Build a full package – Money transfer simulator](#8)
+[ Mini-project 3. Build a full package – Money transfer simulator](#9)
 
-[ Mini-project 4. The e-mail address book](#24)
+[ Mini-project 4. The e-mail address book](#25)
 
-[ Mini-project 5A. Guess my number [Easy]](#31)
-[ Mini-project 5B. The website generating animal name ideas [Medium]](#32)
-[ Mini-project 5C. PDF files of multiplication tables [Medium]](#34)
-[ Mini-project 5D. Estimate the value of π [Medium]](#37)
-[ Mini-project 5E. The LOVE thematic quotation [Medium]](#39)
-[ Mini-project 5F. Plot ping durations [Medium-Hard]](#40)
-[ Mini-project 5G. A Graphical User Interface for traceroute [Hard]](#42)
+[ Mini-project 5A. Guess my number [Easy]](#32)
+[ Mini-project 5B. The website generating animal name ideas [Medium]](#33)
+[ Mini-project 5C. PDF files of multiplication tables [Medium]](#35)
+[ Mini-project 5D. Estimate the value of π [Medium]](#38)
+[ Mini-project 5E. The LOVE thematic quotation [Medium]](#40)
+[ Mini-project 5F. Plot ping durations [Medium-Hard]](#41)
+[ Mini-project 5G. A Graphical User Interface for traceroute [Hard]](#43)
 
 
 
