@@ -70,8 +70,11 @@ https://starter.python.training.aubrune.eu/
 ---
 
 #  Enable zoom in Pycharm
-From now, we will only use Pycharm. Enable zooming with `Ctrl+wheel` in `File` > `Settings`: 
-![Enable zooming with Ctrl+wheel](./img/pycharm-zoom.jpg)
+From now, we will only use Pycharm.
+
+Enable zooming with 
+`Ctrl+wheel` in `File` > `Settings`: 
+![bg right:50% 90%](./img/pycharm-zoom.jpg)
 
 ---
 
