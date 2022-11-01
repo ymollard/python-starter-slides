@@ -271,7 +271,7 @@ Relative imports start with `.` or `..`
 
 Refer to the doc about [package creation](https://packaging.python.org/tutorials/packaging-projects).
 
-Create a dynamic metadata file `setup.py` and update its metadata (package name, author, license, description...)
+Create a metadata file `pyproject.toml` and update its metadata (package name, author, license, description...)
 
 Delete the `sys.path` workaround in test files since your package is now installable. 
 
