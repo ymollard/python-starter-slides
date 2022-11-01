@@ -69,6 +69,12 @@ https://starter.python.training.aubrune.eu/
 
 ---
 
+#  Enable zoom in Pycharm
+From now, we will only use Pycharm. Enable zooming with `Ctrl+wheel` in `File` > `Settings`: 
+![Enable zooming with Ctrl+wheel](./img/pycharm-zoom.jpg)
+
+---
+
 # Mini-project 2: The hanged man
 
 You probably know the hanged man game:

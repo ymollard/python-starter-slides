@@ -346,20 +346,27 @@ d.values()   # dict_values ["value1", 42, True]
 In Python 3.5 and above, **type hints** are supported.
 ```python
 i: int = 42
-f: float = 4.2
-b: bool = True
 l: list = ["a", "b", "c"]
 l: list[str] = ["a", "b", "c"]
+d: dict[str, dict[str, list[str]]] = {"emails": {"Josh": ["josh@example.org", "contact@josh.me"]]}}
 ```
 
 Typing is only intended for the type checker (e.g. `mypy`, or `Pycharm`).
-At runtime, type hints are ignored by the interpreter.
+At runtime, type hints are ignored by the interpreter:
+
+This will run like a charm but your IDE will report the type mismatch between the variable and the literal:
+
 ```python
 i: int = 4.2
 ``` 
-This will run like a charm but if your IDE is equipped with a type checker you will be noticed about the type mismatch between the variable and the literal.
 
-It is recommended to type your code but it remains optional.
+The `typing` module contains tools for advanced typing mechanisms:
+
+```python
+from typing import Optional, Union
+number: Union[float, int, complex] = 4.2
+value: Optional[list] = None
+```
 
 ---
 ### Parameter passing
@@ -697,30 +704,6 @@ d = {i: i*i for i in range(10)}
 ```
 
 ---
-### Introspection
-
-
-Use `type()` to introspect the type of...
-```python
-type(42)        # ... a literal
-# Will return int
-
-my_text = "Hello world"
-type(my_text)   # ... a variable
-# Will return str
-```
-
-Use `isinstance()` to introspect the type of...
-```python
-isinstance(42, float)
-# Will return False because 42 is an int
-
-my_text = "Hello world"
-isinstance(my_text, str)
-# Will return True
-```
-
----
 ## Exceptions
 
 An exception is an error.
@@ -832,29 +815,6 @@ if some_positive_value < 0:     # Trigger an exception by yourself
 ```
 
 ---
-
-### Context manager: the `with` statement
-
-The keyword `with` is a context manager that protects a resource to make sure it is actually teared down after allocation in any case.
-
-```python
-f = open("file.json", "w")
-f.write()
-# PROCESSING WRITING [...] 
-f.write()
-f.close()
-```
-
-What if an exception occurs during the processing of the file? It wouldn't be closed.
-
-The context manager ensures that the resource is automatically closed in any case:
-
-```python
-with open("file.json", "w") as f:
-    f.write()
-```
-
----
 ## Import and use installed libraries
 
 When a library is installed already, use `import` or `from ... import` statements to import and use it:
@@ -887,39 +847,6 @@ With `from ... import`, resources are loaded in the global scope and can be acce
 Libraries are **buit-in** if they are pre-installed with any Python interpreter (the standard library). Other libraries can be installed with `pip`.
 
 ---
-## Working environment
-
-### IDLE, the default IDE coming with Python distributions
-
-![](./img/idle.png)
-
----
-### JupyterLab, the web-based IDE for notebooks
-
-![width:950px](./img/jupyterlab.png)
-
----
-### Visual Studio Code
-
-![width:800px](./img/vscode.png)
-
----
-### Pycharm Pro and PyCharm Community
-
-![width:950px](./img/pycharm.jpg)
-
----
-### Install and use JupyterLab from Pycharm
-
-- Create a new Pycharm project
-- Make sure the virtual environment is activated or type `activate`
-- Open the system terminal (tab at the bottom)
-- Type `pip install jupyterlab`
-- Type `jupyter lab`
-
-... and now follow the notebooks of the [first exercise](/exercises.html#3).
-
----
 
 #  DAY 2
 # MODULES, PACKAGES AND LIBRARIES
@@ -949,7 +876,7 @@ Usually, we invoke the `env` command to tell which is the interpreter for `pytho
 #!/usr/bin/env python3
 ```
 
-Direct call to the interpreter is possible but NOT recommended, since it will force the interpreter bby ignoring any virtual environment you could be in:
+Direct call to the interpreter is possible but NOT recommended, since it will force the interpreter by ignoring any virtual environment you could be in:
 ```python
 #!/usr/local/bin/python3
 ```
