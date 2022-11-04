@@ -154,7 +154,7 @@ Each actor has his/her own bank account.
 
 With your class it must be possible to execute the following scenario (that has no effect so far, but it must not raise any error):
 ```python
-bank = BankAccount("LCL", 10000)
+bank = BankAccount("HSBC", 10000)
 walmart = BankAccount("Walmart", 5000)
 alice = BankAccount("Alice Worz", 500)
 bob = BankAccount("Bob Müller", 100)
@@ -241,28 +241,27 @@ Create an empty script `scenario1.py`for the scenario.
 
 ---
 
-- 4.2. Create a logger for each module: `agios.py`, `blocked.py`, `internal.py`. Make sure you log useful debug info in the next questions.
 
-- 4.3. Move the class declaration of `AgiosBankAccount` in `agios.py`
+- 4.2. Move the class declaration of `AgiosBankAccount` in `agios.py`
 
-- 4.4. Move the class declarations of `BlockedBankAccount` and `InsufficientBalance` in `blocked.py`
+- 4.3. Move the class declarations of `BlockedBankAccount` and `InsufficientBalance` in `blocked.py`
 
-- 4.5. Move the class declaration of `BankAccount` in `internal.py`
+- 4.4. Move the class declaration of `BankAccount` in `internal.py`
 
-- 4.6. Move the scenario (i.e. the successive instanciation of all accounts of companies and individuals) in `scenario1.py`
+- 4.5. Move the scenario (i.e. the successive instanciation of all accounts of companies and individuals) in `scenario1.py`
 
 ---
 
-- 4.7. Check each module and add missing relative import statements 
+- 4.6. Check each module and add missing relative import statements 
 Relative imports start with `.` or `..`
 
-- 4.8. Check each module and add missing absolute import statements such as `datetime`
+- 4.7. Check each module and add missing absolute import statements such as `datetime`
 
 ⚠️ Import statements in the scenario must not be relative because `scenario1.py` will be located outside package `account`. 
 
-- 4.9. Add empty `__init__.py` files to all directories of the package.
+- 4.8. Add empty `__init__.py` files to all directories of the package.
 
-- 4.10. Execute the scenario and check that it leads to the same result as before this refactoring
+- 4.9. Execute the scenario and check that it leads to the same result as before this refactoring
 
 ---
 ## Part 5: Test your package with `pytest`
@@ -464,7 +463,7 @@ Proceed this way:
 1. Generate `n = 1000000` float abscissas (x-axis) as well as `n` float ordinates (y-axis) in range `[0; 1[`
 2. Group these floats by two in order to get a list of couples: `[(x, y), (x, y), (x, y), …]`
 3. Count how many `M(x,y)` points comply the following equation `x²+y² < 1` (call this number `m`)
-4. The `n/m` is an estimate of the area of the 1/4 of circle of centre `0, 0` with radius `1`. Multiply this ratio per 4 to get the area of the full circle `A`, and since `A = n.r²` this result is also the estimate of `n`
+4. The `m/n` is an estimate of the area of the 1/4 of circle of centre `0, 0` with radius `1`. Multiply this ratio per 4 to get the area of the full circle `A`, and since `A = n.r²` this result is also the estimate of `n`
 5. With `pyplot.scatter(x, y, color=’green’)`, draw in green the points that are interior to the circle, and in red all others.
 
 Note: use `pyplot.axis(‘equal’)` to get orthogonal axes 

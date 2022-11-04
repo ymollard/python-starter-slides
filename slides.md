@@ -341,7 +341,6 @@ d.values()   # dict_values ["value1", 42, True]
 
 ### Type hints
 
-In Python 3.5 and above, **type hints** are supported.
 ```python
 i: int = 42
 l: list = ["a", "b", "c"]
@@ -350,9 +349,7 @@ d: dict[str, dict[str, list[str]]] = {"emails": {"Josh": ["josh@example.org", "c
 ```
 
 Typing is only intended for the type checker (e.g. `mypy`, or `Pycharm`).
-At runtime, type hints are ignored by the interpreter:
-
-This will run like a charm but your IDE will report the type mismatch between the variable and the literal:
+At runtime, type hints are ignored by the interpreter but your IDE will report the type mismatch between the variable and the literal:
 
 ```python
 i: int = 4.2
@@ -362,6 +359,7 @@ The `typing` module contains tools for advanced typing mechanisms:
 
 ```python
 from typing import Optional, Union
+
 number: Union[float, int, complex] = 4.2
 value: Optional[list] = None
 ```
@@ -586,7 +584,7 @@ Computes the sum of 2 floats or integers
 
 💡 **Good practice:** Add docstrings to your functions by using `"""`.
 
-After typing `"""` Your IDE may autocomplete the docstring with a sketch that you can complete the text in English.
+After typing `"""` Your IDE may autocomplete the docstring with a sketch.
 
 The expected format of the docstring is **reStructuredText** but other formats exist.
 
@@ -723,7 +721,9 @@ If it is not catched there either, it goes up again ... and again ...
 
 If it reaches the top of the interpreter without being catched, the interpreter exits.
 
-Propagation is one of the main benefits of exceptions that allows to find the right balance between the number of provided workaround
+Propagation is one of the main benefits of exceptions that allows to find the right balance between:
+- no error management
+- all functions calls individually tested for errors
 
 ---
 
@@ -864,7 +864,7 @@ A package can also be a folder containing modules and sub-packages.
 Modules can also be bindings, e.g. Python bindings to a C++ library.
 
 ---
-### Shebangs of Python scripts
+### Scripts : the shebangs
 
 On UNIX OSes (UNIX, Linux, MacOS), a `shebang` is a header of a Python script that tells the system shell which interpreter is to be called to execute this Python module.
 
@@ -880,6 +880,19 @@ Direct call to the interpreter is possible but NOT recommended, since it will fo
 ```
 
 The Windows shell ignore shebangs.
+
+---
+
+### Packages : the `sys.path` variable
+
+When importing a package with the `import` statement, the interpreter seeks for it in `sys.path`. 
+
+This is a regular Python list and it can be modified at runtime (with `append`) to add paths to your libraries.
+
+However installable packages and recommanded and do not need this trick.
+
+![bg right:45% 90%](img/sys.path.png)
+
 
 ---
 ## Structure of Python packages
@@ -928,18 +941,6 @@ value = my_sqrt(25)
 - Only current and parent folders can be retrieved with a relative import
 
 ---
-
-### The `sys.path` variable
-
-When importing a package with the `import` statement, the interpreter seeks for it in `sys.path`. 
-
-This is a regular Python list and it can be modified at runtime (with `append`) to add paths to your libraries.
-
-However installable packages and recommanded and do not need this trick.
-
-![bg right:45% 90%](img/sys.path.png)
-
----
 ## The Python Package Index (PyPI)
 **PyPI** is a global server that allows to find, install and share Python packages.
 
@@ -968,7 +969,7 @@ As a convention, the `requirements.txt` file provides of packages when they are 
 # requirements.txt
 redis==3.2.0
 Flask
-celery==4.2.1
+celery>=4.2.1
 pytest
 ```
 
@@ -1167,10 +1168,10 @@ Since a class is a type (here, `Apartment`), the program can declare several ind
 apartment_dupont = Apartment()
 apartment_muller = Apartment()
 
-apartment_dupont.reduce(15)
-apartment_muller.reduce(7)
+apartment_dupont.reduce_price(15)
+apartment_muller.reduce_price(7)
 apartment_dupont.sell()
-apartment_muller.reduce(3)
+apartment_muller.reduce_price(3)
 apartment_muller.sell()
 ```
 
@@ -1187,7 +1188,7 @@ In this statement:
 ---
 
 ```python
-apartment_dupont.reduce(15)
+apartment_dupont.reduce_price(15)
 ```
 
 This statement is a **method call** on object `apartment_dupont`.
@@ -1252,12 +1253,17 @@ class Apartment:
 
 apart_dupont = Apartment(12000)    # Now the price is compulsory
 apart_haddock = Apartment(90000)
+```
 
+In general, most attributes can be read and written as regular variables:
+```python
+print(f"This flat costs {apart_haddock.price}")
 apart_haddock.available = False
 ```
 
 ---
 
+However some attributes may have a protected or private scope:
 ```python
 class Foo:
     def __init__(self):
@@ -1295,7 +1301,7 @@ class FurnishedApartement(Apartment):   # The same as an Apartment...
 
 furnished_apart = FurnishedApartment(90000)
 furnished_apart.available = False
-furnished_apart.reduce(5)
+furnished_apart.reduce_price(5)
 furnished_apart.furnitures.append("table")
 ```
 
@@ -1328,7 +1334,7 @@ _Note: Former Pythons require a longer syntax: `super(CurrentClassName, self)`_
 - `getattr(apart, "price")`	→  `Apartment.__getattr__(self, name)`		→ Get an attribute
 - `setattr(ap, "price", 10)`	→  `Apartment.__setattr__(self, name, val)`	→ Set an attribute
 
-_The double-underscore is called **dunder**. Magic methods are aka **dunder methods**_
+_Magic methods are also named **dunder methods**_
 
 ---
 
@@ -1371,7 +1377,7 @@ Out[1]:
 - [`socket`](https://docs.python.org/3/library/socket.html): low level network sockets
 - [`argparse`](https://docs.python.org/3/library/argparse.html): access, typing and management of script parameters
 - [`asyncio`](https://docs.python.org/3/library/asyncio.html): Asynchronous I/Os with coroutine-based concurrent code (_promises_)
-- ~~`six`, `future` : write retrocompatible code for Python 2~~
+
 
 ---
 
@@ -1379,7 +1385,7 @@ Out[1]:
 
 - [`numpy`](https://numpy.org/), [`matplotlib`](https://matplotlib.org/), [`scikit-learn`](https://scikit-learn.org/), [`pandas`](https://pandas.pydata.org/): numerical calculus & data 
 - [`click`](https://click.palletsprojects.com/): beautiful command line interfaces
-- [`sqlalchemy`](https://www.sqlalchemy.org/): connect to a databse, emit SQL requests
+- [`sqlalchemy`](https://www.sqlalchemy.org/): connect to a databse, emit SQL requests (ORM)
 - [`redis`](https://redis.io/): inter-processus messaging (NoSQL database)
 - [`pillow`](https://python-pillow.org/), [`opencv`](https://opencv.org/): open, convert, resize… images and pictures
 - [`beautifulsoup`](https://www.crummy.com/software/BeautifulSoup/): extract data from XML or HTML files
@@ -1534,14 +1540,14 @@ In average, UTF-16 is more efficient for Asian texts compared to UTF-8. But UTF-
 
 ## The final point
 
-As of January, 2022, Python 3.9 and 3.10 are the stable versions.
+As of November, 2022, Python 3.10 and 3.11 are the stable versions.
 
 Python 2 is no longer supported since January, 2020: forget it!
 
 Main differences Python 2 → Python 3:
 
 - `print "Hello"`							→ `print("Hello")`
-- `raise ValueError, "Incorrect`	→ `raise ValueError("Incorrect)`
+- `raise ValueError, "problem!"`	→ `raise ValueError("problem!")`
 - `type(1/3) == int` 						→ `type(1/3) == float`
 - `str` (encoded)/`unicode` (decoded)	→ `str` (decoded)/`bytes` (encoded)
 - `# encoding: utf8` (ASCII by default)		→ (UTF-8 by default)
