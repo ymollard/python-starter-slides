@@ -1577,3 +1577,12 @@ Main differences Python 2 → Python 3:
 
 ![bg 59%](./img/python-cheat-sheet-4.png)
 
+---
+
+###  Conférence annuelle francophone
+
+Rendez-vous sur https://pycon.fr
+
+[Retrouvez le replay des conférences 2023](https://indymotion.fr/c/raffut_media/videos)
+
+![width:500px](./img/pyconfr2023.svg)
