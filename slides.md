@@ -1538,10 +1538,12 @@ In average, UTF-16 is more efficient for Asian texts compared to UTF-8. But UTF-
 
 ---
 
-## The final point
+## Python versions
 
-As of November, 2022, Python 3.10 and 3.11 are the stable versions.
+![](./img/release-cycle-2023.png)
 
+---
+### Brief focus on Python 2 (if relevant)
 Python 2 is no longer supported since January, 2020: forget it!
 
 Main differences Python 2 → Python 3:
