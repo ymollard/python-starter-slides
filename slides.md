@@ -59,7 +59,7 @@ https://starter.python.training.aubrune.eu/
     3.2. [ Popular non-builtin libraries (to be installed with pip if needed)](#92)
     3.3. [ Other non-builtin libraries for code quality](#93)
     3.4. [ Charset and encoding](#98)
-    3.5. [ The final point](#103)
+    3.5. [ Python versions](#103)
 
 
 ---
