@@ -509,7 +509,7 @@ else:
 
 ```
 
-Logical operators `and`, `or`, `not` can alos be used here.
+Logical operators `and`, `or`, `not` can also be used here.
 
 ---
 
@@ -570,16 +570,16 @@ for i in integers:
 
 ```python
 def my_custom_sum(a, b):
-"""
-Computes the sum of 2 floats or integers
-:param a: the first element to sum
-:type a: float or int
-:param b: the second element to sum
-:type b: float or int
-:return: the sum of a and b
-:rtype: float or int
-"""
-   return a + b
+    """
+    Computes the sum of 2 floats or integers
+    :param a: the first element to sum
+    :type a: float or int
+    :param b: the second element to sum
+    :type b: float or int
+    :return: the sum of a and b
+    :rtype: float or int
+    """
+    return a + b
 ```
 
 💡 **Good practice:** Add docstrings to your functions by using `"""`.
@@ -615,6 +615,10 @@ One can return 2 values or more:
 ```python
 def compute(a, b):
    return a + b, a - b, a * b, a / b
+```
+
+```python
+result = compute(4, 6)
 ```
 
 Call to `compute()` returns a tuple that one can **unpack**:
@@ -763,6 +767,8 @@ Compared to a custom handling of errors, exceptions have the following benefits:
 - `KeyError`: access to a dictionary key that does not exist
 - `NameError`: undeclared variable name
 - `IOError`: I/O error (e.g. corrupted data, inexisting file...)
+- `RuntimeError`: error happening at runtime (parent of the above)
+- `SyntaxError`: bad syntax (indentation, signs, ...)
 - `KeyboardInterrupt`: received SIGINT signal (Ctrl +C)
 
 ---
@@ -842,7 +848,7 @@ With `from ... import`, resources are loaded in the global scope and can be acce
 - `socket`: low level network sockets
 - `argparse`: access, typing and management of script parameters
 
-Libraries are **buit-in** if they are pre-installed with any Python interpreter (the standard library). Other libraries can be installed with `pip`.
+Libraries are **built-in** if they are pre-installed with any Python interpreter (the standard library). Other libraries can be installed with `pip`.
 
 ---
 
@@ -955,15 +961,12 @@ pip install path/to/my/python/package/folder/
 pip install path/to/my/python/package/zip/file.zip
 pip install numpy    # Will seek on PyPI
 pip install numpy==1.21.5   # Force a specific version
+pip uninstall numpy
 ```
 
 ---
 
-```bash
-pip install -r requirements.txt
-```
-
-As a convention, the `requirements.txt` file provides of packages when they are not installable.
+Non-installable Python projects usually have a file `requirements.txt` at their root
 
 ```python
 # requirements.txt
@@ -972,10 +975,12 @@ Flask
 celery>=4.2.1
 pytest
 ```
+`pip` has a `-r` to install all dependencies from a requirements file:
+```bash
+pip install -r requirements.txt
+```
 
-In that case, this file is placed at the root of the package.
-
-However, installable packages are recommended. In that case, dependencies are handled by `setuptools`.
+Note: installable packages have no such file but specify dependencies elsewhere (e.g. in `pyproject.toml` for installable packages using `setuptools`).
 
 
 
@@ -994,7 +999,7 @@ Last update: November, 2017
 ```
 - Does the developer consider bugs and improvements?
 ```
-# of solved Github issues
+# of solved GitLab issues
 ```
 - Is the package developer reliable?
 ```
@@ -1079,10 +1084,7 @@ will run the Python version targeted by the venv
 ```
 will install the latest numpy version into the venv
 
-```bash
-(venv) yoan@humancoders ~/dev/PythonTraining $ pip install numpy==1.21.0
-```
-will install the specific numpy version into the venv
+
 
 ---
 In practice, your IDE can handle venv creation, activation and deactivation automatically for you when you create or open/close a project.
@@ -1247,11 +1249,11 @@ The constructor, like any other method, can accept input parameters:
 
 ```python
 class Apartment:
-   def __init__(self, price):
-	   self.available = True	
-	   self.price = price
+    def __init__(self, price):
+        self.available = True	
+        self.price = price
 
-apart_dupont = Apartment(12000)    # Now the price is compulsory
+apart_dupont = Apartment(120000)    # Now the price is compulsory
 apart_haddock = Apartment(90000)
 ```
 
@@ -1276,12 +1278,12 @@ Respect of protected attributes is not enforced but private ones rely on name ma
 
 ```python
 class BankAccount:
-     def __init__(self):
-         self.__balance = 3000
+    def __init__(self):
+        self.__balance = 3000
          
 class Client:
-     def make_transaction(self, bank_account: "BankAccount"):
-         bank_account.__balance += 1000
+    def make_transaction(self, bank_account: "BankAccount"):
+        bank_account.__balance += 1000
          
 Client().make_transaction(BankAccount())
 # AttributeError: 'BankAccount' object has no attribute '_Client__balance'
@@ -1332,7 +1334,7 @@ _Note: Former Pythons require a longer syntax: `super(CurrentClassName, self)`_
 - str(apart)			→  `Apartment.__str__(self)`				→ Readable string
 - repr(apart)			→  `Apartment.__repr__(self)`				→ Unique string
 - `getattr(apart, "price")`	→  `Apartment.__getattr__(self, name)`		→ Get an attribute
-- `setattr(ap, "price", 10)`	→  `Apartment.__setattr__(self, name, val)`	→ Set an attribute
+- `setattr(apart, "price", 10)`	→  `Apartment.__setattr__(self, name, val)`	→ Set an attribute
 
 _Magic methods are also named **dunder methods**_
 
@@ -1385,7 +1387,7 @@ Out[1]:
 
 - [`numpy`](https://numpy.org/), [`matplotlib`](https://matplotlib.org/), [`scikit-learn`](https://scikit-learn.org/), [`pandas`](https://pandas.pydata.org/): numerical calculus & data 
 - [`click`](https://click.palletsprojects.com/): beautiful command line interfaces
-- [`sqlalchemy`](https://www.sqlalchemy.org/): connect to a databse, emit SQL requests (ORM)
+- [`sqlalchemy`](https://www.sqlalchemy.org/): connect to a database, emit SQL requests (ORM)
 - [`redis`](https://redis.io/): inter-processus messaging (NoSQL database)
 - [`pillow`](https://python-pillow.org/), [`opencv`](https://opencv.org/): open, convert, resize… images and pictures
 - [`beautifulsoup`](https://www.crummy.com/software/BeautifulSoup/): extract data from XML or HTML files
@@ -1404,7 +1406,7 @@ Out[1]:
 - [`pytype`](https://google.github.io/pytype/): type checker for unannotated code
 - [`pylint`](https://www.pylint.org/), [`pyflakes`](https://libraries.io/pypi/pyflakes): Syntactic and semantic checkers (linters)
 - [`pep8`](https://pep8.org/): Style checker
-
+- [`poetry`](https://python-poetry.org/): Deterministic package-and-dependency manager
 
 ---
 
